@@ -1,0 +1,7 @@
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="80" rx="8" fill="#f5f0ea"/>
+  <path d="M30 20 L50 20 L45 30 L55 30 L40 60 L35 40 L25 40 Z" fill="#21343A"/>
+  <path d="M75 50 C75 40 65 35 65 30 C65 25 70 25 72.5 30 C75 25 80 25 80 30 C80 35 70 40 70 50 Z" fill="#21343A"/>
+  <text x="90" y="40" font-family="Arial" font-weight="bold" font-size="16" fill="#21343A">Baja Pacific</text>
+  <text x="90" y="60" font-family="Arial" font-size="14" fill="#21343A">Relocation</text>
+</svg>

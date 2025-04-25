@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../config/site';
+
+const sections = [
+  { id: "hero", name: "Inicio", url: "/" },
+  { id: "services", name: "Servicios", url: "/#services" },
+  { id: "why-us", name: "Por Qué Elegirnos", url: "/#why-us" },
+  { id: "how-it-works", name: "Cómo Funciona", url: "/#how-it-works" },
+  { id: "testimonials", name: "Testimonios", url: "/#testimonials" },
+  { id: "contact", name: "Contacto", url: "/#contact" }
+];
+
+const destinations = siteConfig.destinations.map(destination => ({
+  name: destination,
+  url: `/#services`
+}));
+---
+
+<Layout
+  title="Mapa del Sitio | Baja Pacific Relocation"
+  description="Mapa del sitio para Baja Pacific Relocation, servicios de mudanza transfronteriza desde California a Baja California."
+>
+  <Header />
+  <main class="py-12 md:py-16 lg:py-20 bg-brand-bg">
+    <div class="container-custom">
+      <h1 class="text-3xl sm:text-4xl font-bold mb-8 text-brand-primary">Mapa del Sitio</h1>
+      
+      <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm mb-8">
+        <h2 class="text-xl md:text-2xl font-semibold mb-4 text-brand-primary">Páginas Principales</h2>
+        <ul class="space-y-2 list-disc pl-5">
+          {sections.map(section => (
+            <li>
+              <a href={section.url} class="text-brand-primary hover:text-brand-secondary transition-colors">
+                {section.name}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href="/sitemap" class="text-brand-primary hover:text-brand-secondary transition-colors">
+              Mapa del Sitio
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm">
+        <h2 class="text-xl md:text-2xl font-semibold mb-4 text-brand-primary">Destinos</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+          {destinations.map(destination => (
+            <a href={destination.url} class="text-brand-primary hover:text-brand-secondary transition-colors">
+              {destination.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

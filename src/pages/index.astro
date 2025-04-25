@@ -1,16 +1,44 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import WhyChooseUs from '../components/WhyChooseUs.astro';
+import Services from '../components/Services.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout 
+  title="Baja Pacific Relocation | Stress-Free Cross-Border Moving to Baja California" 
+  description="Expert cross-border moving services from California to Baja California Norte & Sur. Trusted by expats and retirees for secure, stress-free relocations."
+>
+  <Header />
+  <main>
+    <Hero />
+    <WhyChooseUs />
+    <Services />
+    <HowItWorks />
+    <Testimonials />
+    <Contact />
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  // Smooth scroll functionality
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      const target = document.querySelector((anchor as HTMLAnchorElement).getAttribute('href')!);
+      if (target) {
+        window.scrollTo({
+          top: (target as HTMLElement).offsetTop - 80, // Adjust for header height
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+</script>

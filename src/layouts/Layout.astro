@@ -1,0 +1,93 @@
+---
+import '../styles/global.css';
+import { siteConfig } from '../config/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = siteConfig.title, 
+  description = siteConfig.description 
+} = Astro.props;
+
+// Join keywords array into a comma-separated string
+const keywordsString = siteConfig.keywords.join(", ");
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/images/icono.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content={keywordsString} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`https://${siteConfig.domain}/`} />
+    <meta property="og:image" content={`https://${siteConfig.domain}/images/ogimage.jpg`} />
+    
+    <!-- Font preloads -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": siteConfig.company.name,
+      "description": siteConfig.description,
+      "image": `https://${siteConfig.domain}/images/icono.svg`,
+      "url": `https://${siteConfig.domain}`,
+      "telephone": siteConfig.contact.phone,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": siteConfig.contact.locations[0].address,
+        "addressLocality": siteConfig.contact.locations[0].city,
+        "addressRegion": siteConfig.contact.locations[0].state,
+        "postalCode": siteConfig.contact.locations[0].postalCode,
+        "addressCountry": siteConfig.contact.locations[0].country
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": siteConfig.contact.locations[0].latitude,
+        "longitude": siteConfig.contact.locations[0].longitude
+      },
+      "sameAs": [
+        siteConfig.social.linkedin,
+        siteConfig.social.facebook,
+        siteConfig.social.instagram
+      ]
+    })}>
+    </script>
+    
+    <!-- Meta Pixel Code -->
+    <script is:inline>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1323378182285466');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1323378182285466&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+  </head>
+  <body class="bg-brand-bg text-brand-primary font-sans">
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,87 @@
+---
+import { siteConfig } from '../config/site';
+
+const services = [
+  {
+    title: "International Moving California–Baja",
+    description: "Complete cross-border relocation services from anywhere in California to all cities and towns in Baja California Norte and Sur.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+          </svg>`
+  },
+  {
+    title: "Full and Partial Moves",
+    description: "From complete home relocations to moving specific items like furniture, artwork, or personal belongings to your Baja residence.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+          </svg>`
+  },
+  {
+    title: "Specialized Route Services",
+    description: "Regular routes to Rosarito, Ensenada, San Quintín, La Paz, Los Cabos, and all major destinations throughout Baja California.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
+          </svg>`
+  },
+  {
+    title: "Tailored Moving Solutions",
+    description: "Customized relocation services designed for expats and retirees, addressing your unique requirements and concerns.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
+          </svg>`
+  }
+];
+---
+
+<section id="services" class="py-12 md:py-16 lg:py-20 bg-brand-accent/20">
+  <div class="container-custom">
+    <div class="text-center max-w-3xl mx-auto mb-10 md:mb-16">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 md:mb-8 text-brand-primary">Our Relocation Services</h2>
+      <p class="text-base sm:text-lg text-brand-primary/80">
+        We tailor every move to your specific needs, providing secure and reliable cross-border relocation services from California to Baja.
+      </p>
+    </div>
+    
+    <div class="grid sm:grid-cols-2 gap-5 md:gap-8 mb-10 md:mb-16">
+      {services.map(service => (
+        <div class="bg-white p-5 md:p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-brand-secondary/10 h-full">
+          <div class="w-10 h-10 md:w-12 md:h-12 bg-brand-primary/10 rounded-full flex items-center justify-center text-brand-primary mb-3 md:mb-4">
+            <Fragment set:html={service.icon} />
+          </div>
+          <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-brand-primary">{service.title}</h3>
+          <p class="text-sm md:text-base text-brand-primary/70 mb-3 md:mb-4">{service.description}</p>
+          <a href="#contact" class="text-brand-primary font-medium hover:text-brand-secondary transition-colors inline-flex items-center gap-1 text-sm md:text-base">
+            Learn more
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </a>
+        </div>
+      ))}
+    </div>
+    
+    <div class="bg-white rounded-xl p-6 md:p-8 shadow-sm border border-brand-secondary/10">
+      <h3 class="text-xl md:text-2xl font-semibold mb-5 md:mb-6 text-brand-primary text-center">We Serve All of Baja California</h3>
+      
+      <div class="flex flex-wrap justify-center gap-2 md:gap-3">
+        {siteConfig.destinations.map(destination => (
+          <span class="px-3 py-1.5 md:px-4 md:py-2 bg-brand-accent/30 text-brand-primary rounded-full text-xs md:text-sm font-medium">
+            {destination}
+          </span>
+        ))}
+      </div>
+      
+      <div class="mt-6 md:mt-8 text-center">
+        <p class="text-sm md:text-base text-brand-primary/70 mb-4">
+          Moving to another destination in Baja California? We can help! Our routes cover all major cities and towns throughout Baja California Norte and Sur.
+        </p>
+        <a href="#contact" class="btn-primary inline-flex items-center gap-2 text-sm md:text-base">
+          Get a Personalized Quote
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 md:w-5 md:h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

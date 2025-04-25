@@ -1,47 +1,36 @@
-# Astro Starter Kit: Minimal
+# Baja Pacific Relocation
 
-```sh
-npm create astro@latest -- --template minimal
+This is a landing page for Baja Pacific Relocation, built with Astro 4.11.3 and Tailwind CSS 3.4.3.
+
+## Getting Started
+
+To run the development server:
+
+1. Double-click the `start-dev.bat` file in the root directory
+2. Or open a command prompt and run:
+   ```
+   npm run dev
+   ```
+
+## Building for Production
+
+To build the site for production:
+
+```
+npm run build
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+This will generate static files in the `dist` directory that you can deploy to any hosting service.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Project Structure
 
-## 🚀 Project Structure
+- `src/components/` - Contains all the UI components
+- `src/layouts/` - Contains the base layout
+- `src/pages/` - Contains the index.astro page
+- `public/` - Static assets like images and robots.txt
 
-Inside of your Astro project, you'll see the following folders and files:
+## Technologies Used
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Astro 4.11.3
+- Tailwind CSS 3.4.3
+- JavaScript for smooth scrolling and animations
