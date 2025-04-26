@@ -1,0 +1,148 @@
+---
+import Layout from './Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../config/site';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  heroImage?: string;
+  destination: string;
+  author: string;
+}
+
+const { title, description, pubDate, updatedDate, heroImage, destination, author } = Astro.props;
+---
+
+<Layout title={`${title} | Baja Pacific Relocation Blog`} description={description}>
+  <Header />
+  <main class="py-12 md:py-16 lg:py-20 bg-brand-bg">
+    <article class="container-custom">
+      <!-- Back to blog -->
+      <div class="mb-8">
+        <a href="/blog" class="text-brand-primary hover:text-brand-secondary flex items-center gap-1 text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+          Back to Blog
+        </a>
+      </div>
+      
+      <!-- Hero section with image -->
+      <div class="mb-8 md:mb-12">
+        {heroImage && (
+          <div class="rounded-xl overflow-hidden mb-6 md:mb-8 max-h-96">
+            <img 
+              src={heroImage} 
+              alt={title} 
+              class="w-full h-full object-cover"
+            />
+          </div>
+        )}
+        
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-brand-primary">{title}</h1>
+        
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4">
+          <span class="px-3 py-1.5 bg-brand-accent/50 rounded-full text-xs font-medium text-brand-primary">
+            {destination}
+          </span>
+          <span class="text-sm text-brand-primary/70">
+            {new Date(pubDate).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+            {updatedDate && (
+              ` (Updated: ${new Date(updatedDate).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })})`
+            )}
+          </span>
+          <span class="text-sm text-brand-primary/70">
+            By {author}
+          </span>
+        </div>
+        
+        <p class="text-lg text-brand-primary/80 max-w-3xl">
+          {description}
+        </p>
+      </div>
+      
+      <!-- Moving Services Banner -->
+      <div class="bg-brand-primary/10 mb-10 p-6 rounded-lg">
+        <div class="flex flex-col md:flex-row items-center gap-4">
+          <div class="flex-1">
+            <h3 class="text-xl font-semibold text-brand-primary mb-2">Moving to {destination}?</h3>
+            <p class="text-brand-primary/80">
+              Whether it's a few cherished items or your entire household, Baja Pacific Relocation handles 
+              everything from packing in the US to delivery at your new Baja home. Cars, furniture, artwork - 
+              we move it all with care.
+            </p>
+          </div>
+          <a href="/#contact" class="btn-primary whitespace-nowrap">Get a Free Quote</a>
+        </div>
+      </div>
+      
+      <!-- Content -->
+      <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm">
+        <div class="prose prose-lg max-w-none">
+          <slot />
+        </div>
+        
+        <!-- CTA after content -->
+        <div class="mt-10 border-t border-brand-secondary/20 pt-8">
+          <h3 class="text-xl font-semibold mb-4 text-brand-primary">Ready to Make Your Move to Baja?</h3>
+          <p class="mb-6 text-brand-primary/80">
+            Let Baja Pacific Relocation handle your move from the US to {destination}. Our bilingual team 
+            takes care of everything - packing, cross-border logistics, and delivery to your new home.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/#contact" class="btn-primary">Get a Free Quote</a>
+            <a href="/#services" class="btn-secondary">Our Services</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style is:global>
+  /* Basic content styling */
+  article .prose h2 {
+    @apply text-2xl font-semibold mt-8 mb-4 text-brand-primary;
+  }
+  
+  article .prose h3 {
+    @apply text-xl font-medium mt-6 mb-3 text-brand-primary;
+  }
+  
+  article .prose p {
+    @apply my-4 text-brand-primary/80;
+  }
+  
+  article .prose ul {
+    @apply list-disc pl-6 my-4 text-brand-primary/80;
+  }
+  
+  article .prose ol {
+    @apply list-decimal pl-6 my-4 text-brand-primary/80;
+  }
+  
+  article .prose a {
+    @apply text-brand-secondary hover:underline;
+  }
+  
+  article .prose blockquote {
+    @apply border-l-4 border-brand-secondary/50 pl-4 italic my-6;
+  }
+  
+  article .prose img {
+    @apply rounded-lg my-6 mx-auto;
+  }
+</style>
