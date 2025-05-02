@@ -1,6 +1,6 @@
-# Baja Pacific Relocation
+# Arnian Moving
 
-This is a landing page for Baja Pacific Relocation, built with Astro 4.11.3 and Tailwind CSS 3.4.3.
+This is a landing page for Arnian Moving, built with Astro 4.11.3 and Tailwind CSS 3.4.3.
 
 ## Getting Started
 

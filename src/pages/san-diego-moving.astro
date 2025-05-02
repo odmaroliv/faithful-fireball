@@ -1,0 +1,785 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../config/site';
+---
+
+<Layout 
+  title="San Diego Local Moving Services | Arnian Moving" 
+  description="Professional local moving services in San Diego County. The same trusted experts for cross-border moves now serving your in-state relocation needs."
+>
+  <!-- Note: We're not including the Header component here since it's already part of Layout -->
+  
+  <!-- Hero Section -->
+  <section class="relative bg-brand-primary py-16 md:py-24 overflow-hidden">
+    <div class="absolute inset-0 z-0 opacity-10 bg-pattern"></div>
+    <div class="container-custom relative z-10">
+      <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+        <div class="md:w-1/2 text-white">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            San Diego's Most Reliable <span class="text-brand-accent">Local Moving</span> Service
+          </h1>
+          <p class="text-lg md:text-xl mb-8 text-white/90">
+            The cross-border moving experts now bringing exceptional care and reliability to your local San Diego move.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#quote" class="btn-accent text-center font-medium px-6 py-3 rounded-lg inline-block">
+              Get a Free Quote
+            </a>
+            <a href={`https://wa.me/${siteConfig.contact.whatsapp}`} class="btn-outline text-white border-white hover:bg-white/10 text-center px-6 py-3 rounded-lg inline-flex items-center justify-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+              </svg>
+              WhatsApp Us
+            </a>
+          </div>
+          <div class="mt-8 flex items-center gap-3">
+           <div class="flex -space-x-2">
+  <!-- Avatar 1 -->
+  <div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-blue-500 flex items-center justify-center">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-6 h-6">
+      <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
+    </svg>
+  </div>
+  
+  <!-- Avatar 2 -->
+  <div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-green-500 flex items-center justify-center">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-6 h-6">
+      <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
+    </svg>
+  </div>
+  
+  <!-- Avatar 3 -->
+  <div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-purple-500 flex items-center justify-center">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-6 h-6">
+      <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
+    </svg>
+  </div>
+</div>
+            <div class="text-sm">
+              <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              </div>
+              <p class="text-white/90">Over 150+ satisfied customers</p>
+            </div>
+          </div>
+        </div>
+        <div class="md:w-1/2">
+          <img 
+            src="/images/lorry-blanco.png" 
+            alt="San Diego Local Moving Services" 
+            class="w-full max-w-lg mx-auto drop-shadow-xl"
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-16 bg-white" id="services">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-brand-primary mb-4">Local Moving Services in San Diego</h2>
+        <p class="text-lg text-brand-primary/80 max-w-2xl mx-auto">
+          From apartment moves to complete home relocations, our experienced team handles moves of all sizes within San Diego County and throughout California.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Residential Moving -->
+        <div class="bg-brand-bg rounded-xl p-6 text-center transition-transform hover:scale-105">
+          <div class="bg-brand-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-brand-primary mb-2">Residential Moving</h3>
+          <p class="text-brand-primary/70">
+            Complete home and apartment relocations with care for your most valuable possessions. From studio apartments to large family homes.
+          </p>
+        </div>
+        
+        <!-- Commercial Moving -->
+        <div class="bg-brand-bg rounded-xl p-6 text-center transition-transform hover:scale-105">
+          <div class="bg-brand-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-brand-primary mb-2">Office Relocation</h3>
+          <p class="text-brand-primary/70">
+            Minimize downtime with our efficient office moving services. We handle furniture, equipment, and sensitive documents with precision.
+          </p>
+        </div>
+        
+        <!-- Specialty Items -->
+        <div class="bg-brand-bg rounded-xl p-6 text-center transition-transform hover:scale-105">
+          <div class="bg-brand-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-brand-primary mb-2">Specialty Moving</h3>
+          <p class="text-brand-primary/70">
+            Safe transport for pianos, artwork, antiques, and other specialty items requiring extra care and specialized equipment.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="py-16 bg-brand-bg" id="why-us">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-brand-primary mb-4">Why San Diego Trusts Us</h2>
+        <p class="text-lg text-brand-primary/80 max-w-2xl mx-auto">
+          Our international moving expertise makes us uniquely qualified to handle your local move with exceptional care and attention to detail.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Experience -->
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="w-12 h-12 bg-brand-primary/10 rounded-lg flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-brand-primary mb-2">Years of Experience</h3>
+          <p class="text-brand-primary/70 text-sm">
+            With years of handling complex international moves, your local move is in experienced hands.
+          </p>
+        </div>
+        
+        <!-- Professional Team -->
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="w-12 h-12 bg-brand-primary/10 rounded-lg flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-brand-primary mb-2">Professional Team</h3>
+          <p class="text-brand-primary/70 text-sm">
+            Our background-checked, trained professionals treat your belongings like their own.
+          </p>
+        </div>
+        
+        <!-- Fully Insured -->
+       <div class="bg-white p-6 rounded-xl shadow-sm">
+  <div class="w-12 h-12 bg-brand-primary/10 rounded-lg flex items-center justify-center mb-4">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+    </svg>
+  </div>
+  <h3 class="text-lg font-semibold text-brand-primary mb-2">Safe & Trusted</h3>
+  <p class="text-brand-primary/70 text-sm">
+    Your belongings are handled with care by our experienced team. We prioritize safety and professionalism at every step to ensure a smooth, worry-free move.
+  </p>
+</div>
+
+        
+        <!-- No Hidden Fees -->
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="w-12 h-12 bg-brand-primary/10 rounded-lg flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 8h6m-5 0a3 3 0 110 6H9l3 3m-3-6h6m6 1a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-brand-primary mb-2">Transparent Pricing</h3>
+          <p class="text-brand-primary/70 text-sm">
+            No surprise fees or hidden costs. Get a detailed quote that covers your entire move.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-16 bg-white" id="process">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-brand-primary mb-4">How It Works</h2>
+        <p class="text-lg text-brand-primary/80 max-w-2xl mx-auto">
+          Our simple three-step process ensures a smooth, stress-free move from start to finish.
+        </p>
+      </div>
+      
+      <div class="relative">
+        <!-- Progress Line (Desktop) -->
+        <div class="hidden md:block absolute top-24 left-0 w-full h-1 bg-brand-secondary/20"></div>
+        
+        <div class="grid md:grid-cols-3 gap-8 relative">
+          <!-- Step 1 -->
+          <div class="text-center relative">
+            <div class="w-14 h-14 bg-brand-secondary rounded-full flex items-center justify-center mx-auto mb-4 z-10 relative">
+              <span class="text-white font-bold text-xl">1</span>
+            </div>
+            <h3 class="text-xl font-semibold text-brand-primary mb-2">Free Consultation</h3>
+            <p class="text-brand-primary/70">
+              Call us or fill out our quote form to discuss your moving needs and receive a detailed, no-obligation estimate.
+            </p>
+          </div>
+          
+          <!-- Step 2 -->
+          <div class="text-center relative">
+            <div class="w-14 h-14 bg-brand-secondary rounded-full flex items-center justify-center mx-auto mb-4 z-10 relative">
+              <span class="text-white font-bold text-xl">2</span>
+            </div>
+            <h3 class="text-xl font-semibold text-brand-primary mb-2">Customized Plan</h3>
+            <p class="text-brand-primary/70">
+              We create a tailored moving plan specific to your needs, timeline, and budget. All details confirmed before moving day.
+            </p>
+          </div>
+          
+          <!-- Step 3 -->
+          <div class="text-center relative">
+            <div class="w-14 h-14 bg-brand-secondary rounded-full flex items-center justify-center mx-auto mb-4 z-10 relative">
+              <span class="text-white font-bold text-xl">3</span>
+            </div>
+            <h3 class="text-xl font-semibold text-brand-primary mb-2">Smooth Execution</h3>
+            <p class="text-brand-primary/70">
+              Our professional team handles everything from packing to placement in your new home, with care and efficiency at every step.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-16 bg-brand-bg" id="testimonials">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-brand-primary mb-4">What Our Clients Say</h2>
+        <p class="text-lg text-brand-primary/80 max-w-2xl mx-auto">
+          Join our community of satisfied customers who experienced stress-free moving.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Testimonial 1 -->
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="flex items-center gap-1 mb-3 text-yellow-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          </div>
+          <p class="text-brand-primary/70 italic mb-4">
+            "After seeing how well they handled my friend's move to Mexico, I knew they'd be perfect for my local move in San Diego. They were professional, efficient, and incredibly careful with my belongings."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="font-medium text-brand-primary">Melissa R.</div>
+            <div class="text-xs text-brand-primary/60">La Jolla, CA</div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 2 -->
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="flex items-center gap-1 mb-3 text-yellow-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          </div>
+          <p class="text-brand-primary/70 italic mb-4">
+            "I was downsizing from a 4-bedroom home to a condo and was overwhelmed by the task. Their team made it seamless, helping me decide what to keep and handling everything with care."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="font-medium text-brand-primary">Thomas J.</div>
+            <div class="text-xs text-brand-primary/60">Pacific Beach, CA</div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 3 -->
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="flex items-center gap-1 mb-3 text-yellow-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          </div>
+          <p class="text-brand-primary/70 italic mb-4">
+            "The expertise from their international moves definitely shows. They knew exactly how to handle my piano and antique furniture with special care. Worth every penny for the peace of mind."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="font-medium text-brand-primary">Sophia K.</div>
+            <div class="text-xs text-brand-primary/60">Carlsbad, CA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Section with EmailJS Integration -->
+  <section class="py-16 bg-white" id="quote">
+    <div class="container-custom">
+      <div class="bg-brand-primary rounded-2xl p-8 md:p-12">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="text-white">
+            <h2 class="text-3xl font-bold mb-4">Get Your Free Moving Quote</h2>
+            <p class="mb-6 text-white/90">
+              Tell us about your move and receive a detailed, no-obligation quote from our moving experts.
+            </p>
+            <ul class="space-y-3">
+              <li class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand-accent" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span>Detailed, all-inclusive pricing</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand-accent" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span>No obligation or pressure</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand-accent" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span>Quick response from local experts</span>
+              </li>
+            </ul>
+            
+            <!-- Social Contact Options -->
+            <div class="mt-8 space-y-4">
+              <h3 class="font-semibold text-lg mb-3">Quick Connect Options:</h3>
+              <a
+                href={`https://wa.me/${siteConfig.contact.whatsapp}`}
+                class="flex items-center gap-2 md:gap-3 bg-green-500 text-white py-2 px-4 md:py-3 md:px-5 rounded-lg hover:bg-green-600 transition-colors text-sm md:text-base w-full max-w-xs"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 md:w-6 md:h-6">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                </svg>
+                WhatsApp Now
+              </a>
+              
+              <a
+                href={siteConfig.social.messenger}
+                class="flex items-center gap-2 md:gap-3 bg-blue-600 text-white py-2 px-4 md:py-3 md:px-5 rounded-lg hover:bg-blue-700 transition-colors text-sm md:text-base w-full max-w-xs"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 md:w-6 md:h-6">
+                  <path d="M12 0c-6.627 0-12 4.975-12 11.111 0 3.497 1.745 6.616 4.472 8.652v4.237l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111 0-6.136-5.373-11.111-12-11.111zm1.193 14.963l-3.056-3.259-5.963 3.259 6.559-6.963 3.13 3.259 5.889-3.259-6.559 6.963z"/>
+                </svg>
+                Message on Facebook
+              </a>
+            </div>
+          </div>
+          
+          <!-- EmailJS Form -->
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <form id="contactForm" class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label for="name" class="block text-sm font-medium text-brand-primary mb-1">Full Name*</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    name="from_name" 
+                    required 
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-brand-primary"
+                  />
+                </div>
+                <div>
+                  <label for="email" class="block text-sm font-medium text-brand-primary mb-1">Email*</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="reply_to" 
+                    required 
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-brand-primary"
+                  />
+                </div>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label for="phone" class="block text-sm font-medium text-brand-primary mb-1">Phone Number*</label>
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone" 
+                    required 
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-brand-primary"
+                  />
+                </div>
+                <div>
+                  <label for="move-date" class="block text-sm font-medium text-brand-primary mb-1">Preferred Move Date*</label>
+                  <input 
+                    type="date" 
+                    id="move-date" 
+                    name="move_date" 
+                    required 
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-brand-primary"
+                  />
+                </div>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label for="move-from" class="block text-sm font-medium text-brand-primary mb-1">Moving From*</label>
+                  <input 
+                    type="text" 
+                    id="move-from" 
+                    name="current_location" 
+                    required 
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-brand-primary"
+                  />
+                </div>
+                <div>
+                  <label for="move-to" class="block text-sm font-medium text-brand-primary mb-1">Moving To*</label>
+                  <input 
+                    type="text" 
+                    id="move-to" 
+                    name="destination" 
+                    required 
+                    value="San Diego"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-brand-primary"
+                  />
+                </div>
+              </div>
+              
+              <div>
+                <label for="move-size" class="block text-sm font-medium text-brand-primary mb-1">Size of Move*</label>
+                <select 
+                  id="move-size" 
+                  name="move_type" 
+                  required
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-brand-primary"
+                >
+                  <option value="">Select Size</option>
+                  <option value="studio">Studio Apartment</option>
+                  <option value="1bed">1 Bedroom</option>
+                  <option value="2bed">2 Bedrooms</option>
+                  <option value="3bed">3 Bedrooms</option>
+                  <option value="4bed">4+ Bedrooms</option>
+                  <option value="office">Office/Commercial</option>
+                </select>
+              </div>
+              
+              <div>
+                <label for="message" class="block text-sm font-medium text-brand-primary mb-1">Additional Details</label>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  rows="3" 
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-brand-primary"
+                ></textarea>
+              </div>
+              
+              <!-- Preferred Contact Method -->
+              <div>
+                <label class="block text-sm font-medium text-brand-primary mb-1">Preferred Contact Method</label>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-1">
+                  <div class="flex items-center">
+                    <input 
+                      type="checkbox" 
+                      id="contactEmail" 
+                      name="contact_email" 
+                      value="Email" 
+                      checked
+                      class="h-4 w-4 text-brand-primary focus:ring-brand-primary/20"
+                    />
+                    <label for="contactEmail" class="ml-2 text-sm text-brand-primary/80">Email</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input 
+                      type="checkbox" 
+                      id="contactPhone" 
+                      name="contact_phone" 
+                      value="Phone" 
+                      class="h-4 w-4 text-brand-primary focus:ring-brand-primary/20"
+                    />
+                    <label for="contactPhone" class="ml-2 text-sm text-brand-primary/80">Phone</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input 
+                      type="checkbox" 
+                      id="contactWhatsApp" 
+                      name="contact_whatsapp" 
+                      value="WhatsApp" 
+                      class="h-4 w-4 text-brand-primary focus:ring-brand-primary/20"
+                    />
+                    <label for="contactWhatsApp" class="ml-2 text-sm text-brand-primary/80">WhatsApp</label>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Hidden input for contact preferences -->
+              <input type="hidden" name="contact_preferences" id="contactPreferences">
+              <input type="hidden" name="service" value="San Diego Local Moving">
+              
+              <button
+                type="submit"
+                id="submitButton"
+                class="w-full bg-brand-primary hover:bg-brand-primary/90 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+              >
+                Get My Free Quote
+              </button>
+              
+              <!-- Status Messages -->
+              <div id="successMessage" class="hidden bg-green-50 text-green-700 p-3 rounded-lg text-center text-sm">
+                Message sent successfully! We'll be in touch soon.
+              </div>
+              <div id="errorMessage" class="hidden bg-red-50 text-red-700 p-3 rounded-lg text-center text-sm">
+                There was an error sending your message. Please try again or contact us directly.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 bg-brand-bg">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-brand-primary mb-4">Frequently Asked Questions</h2>
+        <p class="text-lg text-brand-primary/80 max-w-2xl mx-auto">
+          Get answers to common questions about our San Diego moving services.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- FAQ Item 1 -->
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <h3 class="text-xl font-semibold text-brand-primary mb-3">How far in advance should I book my move?</h3>
+          <p class="text-brand-primary/70">
+            We recommend booking 2-4 weeks in advance for local moves, especially during peak moving season (May-September). For larger homes, earlier booking is advisable to secure your preferred date.
+          </p>
+        </div>
+        
+        <!-- FAQ Item 2 -->
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <h3 class="text-xl font-semibold text-brand-primary mb-3">Do you provide packing materials?</h3>
+          <p class="text-brand-primary/70">
+            Yes, we offer high-quality packing materials at competitive prices. We can also provide full packing services where our team handles everything from boxing small items to crating artwork and fragile pieces.
+          </p>
+        </div>
+        
+        <!-- FAQ Item 3 -->
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+  <h3 class="text-xl font-semibold text-brand-primary mb-3">What makes you different from other moving companies?</h3>
+  <p class="text-brand-primary/70">
+    As a family-owned, locally operated company, we put people first. Unlike the big chains, we focus on personalized service, clear communication, and attention to every detail of your move. Our experienced team lives and works right here in California, so we truly understand your needs. With us, you get reliable service from neighbors you can trust.
+  </p>
+</div>
+
+        
+        <!-- FAQ Item 4 -->
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <h3 class="text-xl font-semibold text-brand-primary mb-3">How do you handle specialty items?</h3>
+          <p class="text-brand-primary/70">
+            Our team is trained to handle specialty items like pianos, antiques, artwork, and electronics with proper equipment and techniques. We use custom crating and specialized padding for extra protection.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Media Follow Section -->
+  <section class="py-12 bg-white">
+    <div class="container-custom">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-brand-primary mb-2">Follow Us</h2>
+        <p class="text-brand-primary/80">Stay updated with our latest moving tips and service offerings</p>
+      </div>
+      
+      <div class="flex justify-center gap-4">
+        <a
+          href={siteConfig.social.facebook}
+          class="w-12 h-12 bg-brand-primary/10 rounded-full flex items-center justify-center text-brand-primary hover:bg-brand-primary hover:text-white transition-colors"
+          aria-label="Facebook"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+            <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+          </svg>
+        </a>
+        
+        <a
+          href={siteConfig.social.instagram}
+          class="w-12 h-12 bg-brand-primary/10 rounded-full flex items-center justify-center text-brand-primary hover:bg-brand-primary hover:text-white transition-colors"
+          aria-label="Instagram"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
+            <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z"/>
+            <path d="M18.406 4.594c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+        
+        <a
+          href={siteConfig.social.linkedin}
+          class="w-12 h-12 bg-brand-primary/10 rounded-full flex items-center justify-center text-brand-primary hover:bg-brand-primary hover:text-white transition-colors"
+          aria-label="LinkedIn"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-brand-accent/10">
+    <div class="container-custom">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold text-brand-primary mb-4">Ready for a Stress-Free Move?</h2>
+        <p class="text-lg text-brand-primary/80 max-w-2xl mx-auto mb-8">
+          Join our satisfied customers who've experienced the most reliable moving service in San Diego.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="#quote" class="btn-primary px-8 py-3">Get a Free Quote</a>
+          <a href={`https://wa.me/${siteConfig.contact.whatsapp}`} class="btn-secondary px-8 py-3 flex items-center justify-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.```astro
+.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+            WhatsApp Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <Footer />
+</Layout>
+
+<!-- EmailJS Integration -->
+<script is:inline src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize EmailJS
+    window.emailjs.init('LHGI2AFtM5bgr4fAw');
+    
+    // Select form elements
+    const form = document.getElementById('contactForm');
+    const contactPreferences = document.getElementById('contactPreferences');
+    const submitButton = document.getElementById('submitButton');
+    const successMessage = document.getElementById('successMessage');
+    const errorMessage = document.getElementById('errorMessage');
+    
+    if (form && submitButton && successMessage && errorMessage && contactPreferences) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Disable button and change text
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+        
+        // Hide previous messages
+        successMessage.classList.add('hidden');
+        errorMessage.classList.add('hidden');
+        
+        // Collect contact preferences
+        const prefElements = [
+          document.getElementById('contactEmail'),
+          document.getElementById('contactPhone'),
+          document.getElementById('contactWhatsApp')
+        ];
+        
+        const selectedPrefs = [];
+        
+        prefElements.forEach(el => {
+          if (el && el.checked) {
+            selectedPrefs.push(el.value);
+          }
+        });
+        
+        // Update hidden field with preferences
+        contactPreferences.value = selectedPrefs.join(', ') || 'Email';
+        
+        // Send form with EmailJS
+        window.emailjs.sendForm(
+          'service_thec9gd',
+          'template_iwi3x38',
+          form
+        )
+        .then(function() {
+          // Show success message
+          successMessage.classList.remove('hidden');
+          successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          form.reset();
+        })
+        .catch(function(error) {
+          // Show error message
+          console.error('EmailJS error:', error);
+          errorMessage.textContent = 'There was an error sending your message. Please try again or contact us directly.';
+          errorMessage.classList.remove('hidden');
+        })
+        .finally(function() {
+          // Restore button
+          submitButton.disabled = false;
+          submitButton.textContent = 'Get My Free Quote';
+        });
+      });
+    }
+  });
+</script>
+
+<style>
+  .bg-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  .btn-accent {
+    background-color: var(--color-brand-accent, #f97316);
+    color: white;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-accent:hover {
+    background-color: var(--color-brand-accent-dark, #ea580c);
+  }
+  
+  .btn-outline {
+    border: 2px solid;
+    transition: background-color 0.2s;
+  }
+</style>

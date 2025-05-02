@@ -1,4 +1,4 @@
-# Baja Pacific Relocation Website - Help Guide
+# Arnian Moving Website - Help Guide
 
 ## Running the Website
 
@@ -18,6 +18,7 @@
 If you experience issues with content disappearing after refresh:
 
 1. Make sure Tailwind CSS is properly installed:
+
    ```
    npm install -D tailwindcss@3.4.3 @astrojs/tailwind
    ```
@@ -29,7 +30,7 @@ If you experience issues with content disappearing after refresh:
    npm run build
    npm run preview
    ```
-   
+
 ## Project Structure
 
 - `src/components/` - Contains all UI components

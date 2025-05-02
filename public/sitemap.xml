@@ -2,15 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Homepage -->
   <url>
-    <loc>https://bajapacific.mx/</loc>
+    <loc>https://arnianmoving.com/</loc>
     <lastmod>2025-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   
+  <!--Local Moving-->
+  <url>
+  <loc>https://arnianmoving.com/san-diego-moving</loc>
+  <lastmod>2025-04-25</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+  
   <!-- Blog Index Page -->
   <url>
-    <loc>https://bajapacific.mx/blog/</loc>
+    <loc>https://arnianmoving.com/blog/</loc>
     <lastmod>2025-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -18,25 +27,25 @@
   
   <!-- Individual Blog Posts -->
   <url>
-    <loc>https://bajapacific.mx/blog/moving-to-cabo-san-lucas-essential-guide-for-new-homeowners</loc>
+    <loc>https://arnianmoving.com/blog/moving-to-cabo-san-lucas-essential-guide-for-new-homeowners</loc>
     <lastmod>2025-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://bajapacific.mx/blog/the-complete-san-jose-del-cabo-relocation-guide</loc>
+    <loc>https://arnianmoving.com/blog/the-complete-san-jose-del-cabo-relocation-guide</loc>
     <lastmod>2025-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://bajapacific.mx/blog/relocating-to-loreto-complete-moving-guide-for-new-homeowners</loc>
+    <loc>https://arnianmoving.com/blog/relocating-to-loreto-complete-moving-guide-for-new-homeowners</loc>
     <lastmod>2025-04-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://bajapacific.mx/blog/hidden-treasures-todos-santos-expats-guide</loc>
+    <loc>https://arnianmoving.com/blog/hidden-treasures-todos-santos-expats-guide</loc>
     <lastmod>2025-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -44,25 +53,25 @@
   
   <!-- Destination Pages -->
   <url>
-    <loc>https://bajapacific.mx/blog/destination/cabo-san-lucas</loc>
+    <loc>https://arnianmoving.com/blog/destination/cabo-san-lucas</loc>
     <lastmod>2025-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bajapacific.mx/blog/destination/san-jose-del-cabo</loc>
+    <loc>https://arnianmoving.com/blog/destination/san-jose-del-cabo</loc>
     <lastmod>2025-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bajapacific.mx/blog/destination/loreto</loc>
+    <loc>https://arnianmoving.com/blog/destination/loreto</loc>
     <lastmod>2025-04-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bajapacific.mx/blog/destination/todos-santos</loc>
+    <loc>https://arnianmoving.com/blog/destination/todos-santos</loc>
     <lastmod>2025-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

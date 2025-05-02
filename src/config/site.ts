@@ -7,17 +7,16 @@
 
 export const siteConfig = {
   // Basic site information
-  name: "Baja Pacific Relocation",
-  domain: "bajapacific.mx",
-  title:
-    "Baja Pacific Relocation | Stress-Free Cross-Border Moving to Baja California",
+  name: "Arnian Moving",
+  domain: "arnianmoving.com",
+  title: "Arnian Moving | Stress-Free Cross-Border Moving to Baja California",
   description:
     "Expert cross-border moving services from California and the U.S. to Baja California Norte & Sur. Trusted by expats and retirees for secure, stress-free relocations.",
 
   // Company information
   company: {
-    name: "Baja Pacific Relocation",
-    legalName: "Baja Pacific Relocation LLC",
+    name: "Arnian Moving",
+    legalName: "Arnian Moving LLC",
     foundedYear: 2013,
     tagline: "Stress-free cross-border moving from California to Baja",
     experience: "10+ years of experience",
@@ -26,7 +25,7 @@ export const siteConfig = {
   // Contact information
   contact: {
     phone: "+1 (619) 632 2570",
-    email: "info@bajapacific.mx",
+    email: "info@arnianmoving.com",
     whatsapp: "+16196322570", // No spaces or special chars for WhatsApp links
     operatingHours: "Mon-Fri, 9am-5pm PST",
     locations: [
@@ -34,8 +33,8 @@ export const siteConfig = {
         city: "San Diego",
         state: "CA",
         country: "US",
-        address: "Via de la Amistad",
-        postalCode: "",
+        address: "9948 Via de la Amistad",
+        postalCode: "92154",
         latitude: "",
         longitude: "",
       },
@@ -43,8 +42,8 @@ export const siteConfig = {
         city: "Tijuana",
         state: "BC",
         country: "MX",
-        address: "",
-        postalCode: "",
+        address: "C. Laguna Salada 4939, Lago Sur",
+        postalCode: "22217",
         latitude: "",
         longitude: "",
       },

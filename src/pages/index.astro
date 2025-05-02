@@ -9,21 +9,23 @@ import Testimonials from '../components/Testimonials.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import LatestBlogPosts from '@/components/LatestBlogPosts.astro';
+import FleetGallery from '@/components/FleetGallery.astro';
 ---
 
 <Layout 
-  title="Baja Pacific Relocation | Stress-Free Cross-Border Moving to Baja California" 
+  title="Arnian Moving | Stress-Free Cross-Border Moving to Baja California" 
   description="Expert cross-border moving services from California to Baja California Norte & Sur. Trusted by expats and retirees for secure, stress-free relocations."
 >
   <Header />
   <main>
     <Hero />
+    <FleetGallery/>
     <WhyChooseUs />
     <Services />
         <LatestBlogPosts />
     <HowItWorks />
 
-    <Testimonials />
+    <!-- <Testimonials /> -->
     <Contact />
   </main>
   <Footer />

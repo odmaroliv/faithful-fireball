@@ -21,7 +21,7 @@ const keywordsString = siteConfig.keywords.join(", ");
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/images/icono.svg" />
+    <link rel="icon" type="image/svg+xml" href="/images/icono.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -45,7 +45,7 @@ const keywordsString = siteConfig.keywords.join(", ");
       "@type": "LocalBusiness",
       "name": siteConfig.company.name,
       "description": siteConfig.description,
-      "image": `https://${siteConfig.domain}/images/icono.svg`,
+      "image": `https://${siteConfig.domain}/images/icono.png`,
       "url": `https://${siteConfig.domain}`,
       "telephone": siteConfig.contact.phone,
       "address": {
@@ -86,6 +86,17 @@ const keywordsString = siteConfig.keywords.join(", ");
     src="https://www.facebook.com/tr?id=1323378182285466&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+     <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-666721564"></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-666721564');
+</script>
   </head>
   <body class="bg-brand-bg text-brand-primary font-sans">
     <slot />

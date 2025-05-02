@@ -1,18 +1,17 @@
 ---
-//hero.astro
 import { siteConfig } from '../config/site';
 ---
 
 <section class="relative bg-brand-bg min-h-[90vh] md:min-h-[80vh] flex items-center py-12 md:py-16 lg:py-20 overflow-hidden">
-  <!-- Background pattern (improved subtle waves pattern) -->
-  <div class="absolute inset-0 pointer-events-none">
+  <!-- Background pattern mejorado -->
+  <div class="absolute inset-0 pointer-events-none opacity-20">
     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <pattern id="wave-pattern" width="100" height="100" patternUnits="userSpaceOnUse">
           <path d="M0,50 C20,40 35,10 50,10 C65,10 80,40 100,50 C120,60 135,90 150,90 C165,90 180,60 200,50" 
-                stroke="#21343A" stroke-width="0.5" fill="none" stroke-opacity="0.07"/>
+                stroke="#1a3a86" stroke-width="0.7" fill="none" stroke-opacity="0.2"/>
           <path d="M0,70 C20,60 35,30 50,30 C65,30 80,60 100,70 C120,80 135,110 150,110 C165,110 180,80 200,70" 
-                stroke="#21343A" stroke-width="0.5" fill="none" stroke-opacity="0.05"/>
+                stroke="#4779db" stroke-width="0.7" fill="none" stroke-opacity="0.15"/>
         </pattern>
       </defs>
       <rect width="100%" height="100%" fill="url(#wave-pattern)" />
@@ -22,17 +21,19 @@ import { siteConfig } from '../config/site';
   <div class="container-custom relative">
     <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
       <div class="space-y-5 md:space-y-6">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-brand-primary">
-          Moving to Baja? <span class="text-brand-secondary">Stress-free</span> relocations.
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+          <span class="text-brand-primary">Moving to Baja?</span> <br />
+          <span class="text-brand-secondary">Stress-free</span> 
+          <span class="text-brand-primary">relocations.</span>
         </h1>
-        <p class="text-base sm:text-lg md:text-xl text-brand-primary/80 max-w-lg">
-          Expert cross-border moving services from California and the U.S. to Baja California Norte & Sur. Trusted by expats, retirees, and families.
+        <p class="text-base sm:text-lg md:text-xl text-brand-gray/90 max-w-lg">
+          Expert cross-border moving services from California and the U.S. to Baja California Norte & Sur, and from Baja back to the U.S. Trusted by expats, retirees, and families.
         </p>
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
-          <a href="#contact" class="btn-primary text-center">
+          <a href="#contact" class="bg-brand-accent hover:bg-sarnian-700 text-white font-medium rounded-md transition-colors py-3 px-6 text-center shadow-md hover:shadow-lg">
             Get a Free Quote
           </a>
-          <a href="#services" class="btn-secondary text-center">
+          <a href="#services" class="bg-white hover:bg-gray-50 text-brand-primary border border-brand-border font-medium rounded-md transition-colors py-3 px-6 text-center shadow-sm hover:shadow-md">
             Our Services
           </a>
         </div>
@@ -41,43 +42,43 @@ import { siteConfig } from '../config/site';
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-brand-secondary">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <span class="text-sm text-brand-primary/80">Trusted by expats</span>
+            <span class="text-sm text-brand-gray">Trusted by expats</span>
           </div>
           <div class="flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-brand-secondary">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <span class="text-sm text-brand-primary/80">Bilingual support</span>
+            <span class="text-sm text-brand-gray">Bilingual support</span>
           </div>
           <div class="flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-brand-secondary">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <span class="text-sm text-brand-primary/80">Safe & Fast</span>
+            <span class="text-sm text-brand-gray">Safe & Fast</span>
           </div>
         </div>
       </div>
       
       <div class="relative p-4 md:p-5 mt-4 md:mt-0">
-        <!-- Card con mejor aspecto y altura reducida para pantallas grandes -->
-        <div class="absolute inset-0 bg-brand-primary/10 rounded-2xl transform rotate-2"></div>
-        <div class="relative bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:scale-[1.02] hover:shadow-xl">
-          <!-- SVG de personas cargando un sofá - estilo similar a la imagen de referencia -->
-          <div class="aspect-w-16 aspect-h-12 bg-gradient-to-br from-brand-primary/5 to-brand-secondary/20 flex items-center justify-center p-4 md:p-6">
-            <img 
-              src="/images/lorry.png" 
-              alt="Professional moving service" 
-              class="w-full h-auto max-w-[300px] mx-auto object-contain"
-            />
-          </div>
+       
+        <div class="absolute inset-0 bg-brand-secondary/20 rounded-2xl transform rotate-2"></div>
+        <div class="relative bg-white rounded-2xl shadow-custom overflow-hidden transform transition-all duration-500 hover:scale-[1.02] hover:shadow-custom-lg">
+       
+        <div class="aspect-w-16 aspect-h-12 bg-gradient-to-br from-sarnian-50 to-sarnian-100 overflow-hidden">
+          <img 
+            src="/images/Arnian-Moving-Flota-Menajes.png" 
+            alt="Professional moving service" 
+            class="w-full h-full object-cover object-top"
+          />
+        </div>
           <div class="p-5 md:p-6 bg-white">
-            <h3 class="text-lg md:text-xl font-semibold mb-2 text-brand-primary">Full-service moving to Baja</h3>
-            <p class="text-sm md:text-base text-brand-primary/70 mb-4">
-              Professional packing, loading and secure transport from California to all Baja destinations.
+            <h3 class="text-lg md:text-xl font-semibold mb-2 text-brand-primary">Two-way moving services</h3>
+            <p class="text-sm md:text-base text-brand-gray/80 mb-4">
+              Professional packing, loading and secure transport between California and all Baja destinations, in both directions.
             </p>
             <div class="flex justify-between items-center text-sm">
               <span class="text-brand-secondary font-medium">10+ years of experience</span>
-              <a href="#contact" class="text-brand-primary font-semibold hover:underline flex items-center gap-1 group">
+              <a href="#contact" class="text-brand-accent font-semibold hover:text-brand-blue-dark flex items-center gap-1 group transition-colors">
                 Get started
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 transform transition-transform group-hover:translate-x-1">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
@@ -89,10 +90,11 @@ import { siteConfig } from '../config/site';
       </div>
     </div>
   </div>
-  <!-- WhatsApp floating icon -->
+  
+  <!-- WhatsApp floating icon mejorado -->
   <a 
     href={`https://wa.me/${siteConfig.contact.whatsapp}`} 
-    class="fixed bottom-6 right-6 z-50 w-14 h-14 flex items-center justify-center bg-green-500 rounded-full shadow-lg hover:bg-green-600 transition-colors duration-300"
+    class="fixed bottom-6 right-6 z-50 w-14 h-14 flex items-center justify-center bg-green-500 rounded-full shadow-lg hover:bg-green-600 transition-colors duration-300 hover:scale-110 transition-transform"
     aria-label="Contact us on WhatsApp"
     target="_blank"
     rel="noopener noreferrer"

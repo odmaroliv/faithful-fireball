@@ -1,6 +1,6 @@
 @echo off
 echo ---------------------------------------------
-echo  BAJA PACIFIC RELOCATION WEBSITE
+echo  Arnian Moving WEBSITE
 echo ---------------------------------------------
 echo.
 echo Starting Astro development server...

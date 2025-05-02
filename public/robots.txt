@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bajapacific.mx/sitemap.xml
+Sitemap: https://arnianmoving.com/sitemap.xml

@@ -4,6 +4,6 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://bajapacific.mx",
+  site: "https://arnianmoving.com",
   integrations: [tailwind(), mdx()],
 });
