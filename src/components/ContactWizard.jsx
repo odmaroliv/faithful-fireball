@@ -268,6 +268,7 @@ export default function ContactWizard() {
         formData.append("image", b64);
         formData.append("name", p.name);
         formData.append("privacy", "hidden");
+        formData.append("expiration", "864000");
         const res = await fetch("https://api.imgbb.com/1/upload", {
           method: "POST",
           body: formData,
@@ -563,9 +564,7 @@ export default function ContactWizard() {
               <div>
                 <label style={css.label}>
                   Your email address{" "}
-                  <span style={{ fontWeight: "400", color: "#888" }}>
-                    (optional)
-                  </span>
+                  <span style={{ fontWeight: "400", color: "#888" }}></span>
                 </label>
                 <input
                   style={css.input}
