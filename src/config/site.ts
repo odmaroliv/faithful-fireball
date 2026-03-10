@@ -53,8 +53,8 @@ export const siteConfig = {
   // Social media links
   social: {
     facebook: "https://www.facebook.com/BajaPacificRelocation",
-    instagram: "https://www.instagram.com/bajapacificrelocation",
-    linkedin: "https://www.linkedin.com/company/baja-pacific-relocation",
+    instagram: "https://www.instagram.com/arnianmoving",
+    linkedin: "https://www.linkedin.com/company/arnian-moving",
     messenger: "https://m.me/BajaPacificRelocation",
   },
 

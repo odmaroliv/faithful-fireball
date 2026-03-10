@@ -10,10 +10,15 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.5",
+    "@astrojs/react": "^4.4.2",
     "@astrojs/tailwind": "^6.0.2",
     "@emailjs/browser": "^4.4.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "astro": "^5.7.5",
     "astro-carousel": "^3.0.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "reading-time": "^1.5.0",
     "sanitize-html": "^2.16.0"
   },
