@@ -3,7 +3,7 @@ import ContactWizard from './ContactWizard.jsx';
 const emailjsKey = import.meta.env.PUBLIC_EMAILJS_KEY;
 ---
 
-<section id="contact">
+<section id="contact" style="scroll-margin-top: 80px;">
   <script is:inline src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script is:inline define:vars={{ emailjsKey }}>
     window.emailjs.init(emailjsKey);
