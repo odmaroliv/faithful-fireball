@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 const SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE;
 const TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE;
+const IMGBB_KEY = import.meta.env.PUBLIC_IMGBB_KEY;
+const IMGBB_ALBUM = import.meta.env.PUBLIC_IMGBB_ALBUM;
 
 const DESTINATIONS = [
   "Tijuana",
@@ -178,6 +180,9 @@ export default function ContactWizard() {
   const [sending, setSending] = useState(false);
   const [done, setDone] = useState(false);
   const [err, setErr] = useState("");
+  const [uploadedPhotos, setUploadedPhotos] = useState([]);
+  const [photoErr, setPhotoErr] = useState("");
+  const [uploadingPhotos, setUploadingPhotos] = useState(false);
 
   useEffect(() => {
     try {
@@ -204,10 +209,90 @@ export default function ContactWizard() {
     return true;
   };
 
+  const compressImage = (file) =>
+    new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const MAX = 1200;
+          let w = img.width,
+            h = img.height;
+          if (w > MAX) {
+            h = Math.round((h * MAX) / w);
+            w = MAX;
+          } else if (h > MAX) {
+            w = Math.round((w * MAX) / h);
+            h = MAX;
+          }
+          canvas.width = w;
+          canvas.height = h;
+          canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+          canvas.toBlob(
+            (blob) => {
+              const r2 = new FileReader();
+              r2.onload = () => resolve(r2.result.split(",")[1]);
+              r2.readAsDataURL(blob);
+            },
+            "image/jpeg",
+            0.75,
+          );
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+  const handlePhotos = async (e) => {
+    const files = Array.from(e.target.files).slice(0, 8);
+    setPhotoErr("");
+    const previews = files.map((f) => ({
+      name: f.name,
+      preview: URL.createObjectURL(f),
+      file: f,
+    }));
+    setUploadedPhotos((prev) => [...prev, ...previews].slice(0, 8));
+  };
+
+  const removePhoto = (i) =>
+    setUploadedPhotos((prev) => prev.filter((_, idx) => idx !== i));
+
+  const uploadPhotosToImgBB = async () => {
+    const results = [];
+    for (const p of uploadedPhotos) {
+      try {
+        const b64 = await compressImage(p.file);
+        const formData = new FormData();
+        formData.append("key", IMGBB_KEY);
+        formData.append("image", b64);
+        formData.append("name", p.name);
+        formData.append("privacy", "hidden");
+        const res = await fetch("https://api.imgbb.com/1/upload", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await res.json();
+        if (data.success) results.push(data.data.url);
+      } catch {}
+    }
+    return results;
+  };
+
   const submit = async () => {
     setSending(true);
     setErr("");
-    const body = `NEW QUOTE\n\nContact: ${d.name} | ${d.phone} | ${d.email}\nDate: ${d.flexible ? "Flexible" : d.moveDate}\n\nFrom: ${d.originAddr} (${d.originFloor}, ${d.originAccess})\nMaps: ${d.originMaps || "N/A"}\n\nTo: ${d.destCity} - ${d.destAddr} (${d.destFloor}, ${d.destAccess})\nMaps: ${d.destMaps || "N/A"}\n\nItems: ${d.items}\nValue: ${d.value || "N/A"}\nPhotos: ${d.photos}\n\nPacking: ${d.packing}\nService: ${d.service}`;
+    let photoLinks = "";
+    if (uploadedPhotos.length > 0) {
+      setUploadingPhotos(true);
+      const urls = await uploadPhotosToImgBB();
+      setUploadingPhotos(false);
+      if (urls.length > 0)
+        photoLinks =
+          "\n\nPHOTOS:\n" +
+          urls.map((u, i) => `Photo ${i + 1}: ${u}`).join("\n");
+    }
+    const body = `NEW QUOTE\n\nContact: ${d.name} | ${d.phone} | ${d.email}\nDate: ${d.flexible ? "Flexible" : d.moveDate}\n\nFrom: ${d.originAddr} (${d.originFloor}, ${d.originAccess})\nMaps: ${d.originMaps || "N/A"}\n\nTo: ${d.destCity} - ${d.destAddr} (${d.destFloor}, ${d.destAccess})\nMaps: ${d.destMaps || "N/A"}\n\nItems: ${d.items}\nValue: ${d.value || "N/A"}\nPhotos: ${d.photos}\n\nPacking: ${d.packing}\nService: ${d.service}${photoLinks}`;
     try {
       await window.emailjs.send(SERVICE_ID, TEMPLATE_ID, {
         from_name: d.name,
@@ -318,29 +403,104 @@ export default function ContactWizard() {
           <div style={{ textAlign: "center" }}>
             <div style={{ fontSize: "3.5rem", marginBottom: "1rem" }}>📦</div>
             <h2 style={{ ...css.h2, fontSize: "1.7rem" }}>
-              Request a Free Moving Quote
+              Get Your Free Moving Quote
             </h2>
             <p style={{ ...css.sub, fontSize: "1.05rem" }}>
               Answer a few simple questions and we will prepare your
               personalized quote. It only takes about 2 minutes.
             </p>
+
+            {/* AI highlight box */}
             <div
+              style={{
+                textAlign: "left",
+                background: "linear-gradient(135deg,#eef1ff,#f0f4ff)",
+                border: "2px solid #c7d2ff",
+                borderRadius: "14px",
+                padding: "1.1rem 1.25rem",
+                marginBottom: "1.25rem",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                <span
+                  style={{
+                    background: "linear-gradient(135deg,#6366f1,#4779db)",
+                    color: "white",
+                    fontSize: "0.75rem",
+                    fontWeight: "700",
+                    padding: "0.25rem 0.65rem",
+                    borderRadius: "99px",
+                    letterSpacing: "0.05em",
+                  }}
+                >
+                  ✦ AI-Powered
+                </span>
+                <span
+                  style={{
+                    fontSize: "1rem",
+                    fontWeight: "800",
+                    color: "#1a3a86",
+                  }}
+                >
+                  No need to write any list
+                </span>
+              </div>
+              <p
+                style={{
+                  fontSize: "0.95rem",
+                  color: "#444",
+                  margin: "0 0 0.75rem",
+                  lineHeight: 1.65,
+                }}
+              >
+                When we ask about your belongings, you can simply{" "}
+                <strong>take a few photos</strong> of each room and upload them.
+                Our AI will read the photos and create the inventory list
+                automatically.
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "0.5rem",
+                  alignItems: "flex-start",
+                  fontSize: "0.88rem",
+                  color: "#6366f1",
+                  fontWeight: "600",
+                }}
+              >
+                <span>📸</span>
+                <span>
+                  You take the photo → AI creates the list → We prepare your
+                  quote
+                </span>
+              </div>
+            </div>
+
+            {/* Steps summary */}
+            {/* <div
               style={{
                 textAlign: "left",
                 display: "flex",
                 flexDirection: "column",
-                gap: "0.75rem",
-                marginBottom: "2rem",
+                gap: "0.6rem",
+                marginBottom: "1.75rem",
                 background: "#f8faff",
                 borderRadius: "12px",
-                padding: "1.25rem 1.5rem",
+                padding: "1rem 1.25rem",
               }}
             >
               {[
                 ["📍", "Where you are moving from and to"],
                 ["📅", "When you plan to move"],
-                ["🛋️", "What items you are moving"],
-                ["✅", "What services you need"],
+                ["📸", "Photos of your belongings (AI reads them for you)"],
+                ["✅", "What type of service you need"],
               ].map(([icon, text]) => (
                 <div
                   key={text}
@@ -348,15 +508,18 @@ export default function ContactWizard() {
                     display: "flex",
                     gap: "0.75rem",
                     alignItems: "center",
-                    fontSize: "1rem",
+                    fontSize: "0.95rem",
                     color: "#444",
                   }}
                 >
-                  <span style={{ fontSize: "1.2rem" }}>{icon}</span>
+                  <span style={{ fontSize: "1.1rem", flexShrink: 0 }}>
+                    {icon}
+                  </span>
                   <span>{text}</span>
                 </div>
               ))}
-            </div>
+            </div> */}
+
             <button
               onClick={next}
               style={{
@@ -864,22 +1027,160 @@ export default function ContactWizard() {
         {/* ITEMS */}
         {s === "items" && (
           <div>
-            <h2 style={css.h2}>What are you moving? 🛋️</h2>
-            <p style={css.sub}>
-              Describe what you plan to bring. A general list is fine — you can
-              send us photos later by WhatsApp.
-            </p>
-            <div style={css.hint}>
-              💡 Example: "1 bed, 1 dresser, dining table with 4 chairs, sofa,
-              10 boxes, TV and stand"
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginBottom: "0.25rem",
+              }}
+            >
+              <h2 style={{ ...css.h2, marginBottom: 0 }}>
+                What are you moving? 🛋️
+              </h2>
+              <span
+                style={{
+                  background: "linear-gradient(135deg,#6366f1,#4779db)",
+                  color: "white",
+                  fontSize: "0.7rem",
+                  fontWeight: "700",
+                  padding: "0.25rem 0.6rem",
+                  borderRadius: "99px",
+                  letterSpacing: "0.05em",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                ✦ AI-Powered
+              </span>
             </div>
+            <p style={css.sub}>
+              Upload photos of your belongings and our AI will generate the
+              inventory list for you automatically.
+            </p>
             <div style={css.col}>
               <div>
-                <label style={css.label}>Describe your belongings *</label>
+                <label style={css.label}>
+                  Upload photos{" "}
+                  <span style={{ fontWeight: "400", color: "#888" }}>
+                    (up to 8 photos)
+                  </span>
+                </label>
+                <label
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "0.5rem",
+                    padding: "1.25rem",
+                    border: "2px dashed #c7d2ff",
+                    borderRadius: "12px",
+                    cursor: "pointer",
+                    background: "#f8faff",
+                    transition: "border-color 0.2s",
+                  }}
+                >
+                  <span style={{ fontSize: "2rem" }}>📸</span>
+                  <span
+                    style={{
+                      fontSize: "0.9rem",
+                      color: "#4779db",
+                      fontWeight: "600",
+                    }}
+                  >
+                    Tap to select photos
+                  </span>
+                  <span style={{ fontSize: "0.78rem", color: "#aaa" }}>
+                    JPG, PNG — max 10MB each
+                  </span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={handlePhotos}
+                    style={{ display: "none" }}
+                  />
+                </label>
+                {photoErr && (
+                  <p
+                    style={{
+                      color: "#dc2626",
+                      fontSize: "0.82rem",
+                      marginTop: "0.4rem",
+                    }}
+                  >
+                    {photoErr}
+                  </p>
+                )}
+                {uploadedPhotos.length > 0 && (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: "0.5rem",
+                      marginTop: "0.75rem",
+                    }}
+                  >
+                    {uploadedPhotos.map((p, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          position: "relative",
+                          width: "80px",
+                          height: "80px",
+                        }}
+                      >
+                        <img
+                          src={p.preview}
+                          alt={p.name}
+                          style={{
+                            width: "80px",
+                            height: "80px",
+                            objectFit: "cover",
+                            borderRadius: "8px",
+                            border: "2px solid #dde4ff",
+                          }}
+                        />
+                        <button
+                          onClick={() => removePhoto(i)}
+                          style={{
+                            position: "absolute",
+                            top: "-6px",
+                            right: "-6px",
+                            width: "20px",
+                            height: "20px",
+                            borderRadius: "50%",
+                            background: "#ef4444",
+                            color: "white",
+                            border: "none",
+                            cursor: "pointer",
+                            fontSize: "0.7rem",
+                            fontWeight: "700",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            lineHeight: 1,
+                          }}
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div>
+                <label style={css.label}>
+                  Or describe your belongings manually *
+                </label>
+                <div style={css.hint}>
+                  💡 Example: "1 bed, dresser, dining table with 4 chairs, sofa,
+                  10 boxes, TV"
+                </div>
                 <textarea
                   style={{
                     ...css.input,
-                    minHeight: "100px",
+                    minHeight: "80px",
                     resize: "vertical",
                   }}
                   value={d.items}
@@ -900,27 +1201,6 @@ export default function ContactWizard() {
                   onChange={(e) => set("value", e.target.value)}
                   placeholder="Example: $3,000"
                 />
-              </div>
-              <div>
-                <label style={css.label}>
-                  Do you have photos of your belongings?
-                </label>
-                <div
-                  style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}
-                >
-                  {[
-                    ["Yes — I will send them by WhatsApp", "Yes"],
-                    ["Not yet — I will take them later", "Later"],
-                    ["No, I do not have photos", "No"],
-                  ].map(([label, val]) => (
-                    <Opt
-                      key={val}
-                      label={label}
-                      selected={d.photos === val}
-                      onClick={() => set("photos", val)}
-                    />
-                  ))}
-                </div>
               </div>
             </div>
             <button
@@ -1254,6 +1534,12 @@ export default function ContactWizard() {
                 ["📍 Pickup", d.originAddr],
                 ["🏡 Delivery", `${d.destCity} — ${d.destAddr}`],
                 ["🛋️ Items", d.items],
+                [
+                  "📸 Photos",
+                  uploadedPhotos.length > 0
+                    ? `${uploadedPhotos.length} photo(s) attached`
+                    : "None",
+                ],
                 ["📦 Packing", d.packing],
                 ["✨ Service", d.service],
               ].map(([label, value]) => (
@@ -1318,7 +1604,11 @@ export default function ContactWizard() {
                 padding: "1.1rem",
               }}
             >
-              {sending ? "Sending your request…" : "✅ Send my quote request"}
+              {uploadingPhotos
+                ? "📸 Uploading your photos, please wait…"
+                : sending
+                  ? "⏳ Sending your request…"
+                  : "✅ Send my quote request"}
             </button>
             <p
               style={{
