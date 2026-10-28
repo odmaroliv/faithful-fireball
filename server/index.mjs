@@ -429,10 +429,15 @@ http
     // Browsers from other sites may not post leads (server-to-server calls carry no Origin).
     if (req.url === "/lead" && !CFG.origins.includes(origin)) return res.writeHead(403).end();
 
+    // Retell's call_analyzed payload carries the full word-timed transcript: a 5-minute call is well over 64 KB.
+    const maxBody = req.url === "/retell/webhook" ? 5 * 1024 * 1024 : 64 * 1024;
     let body = "";
     for await (const chunk of req) {
       body += chunk;
-      if (body.length > 64 * 1024) return res.writeHead(413).end();
+      if (body.length > maxBody) {
+        log("WARNING", "body too large", { path: req.url, bytes: body.length });
+        return res.writeHead(413).end();
+      }
     }
     try {
       const [status, payload] = await handler(req, body);
