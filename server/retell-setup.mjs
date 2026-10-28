@@ -17,9 +17,8 @@ const PROMPT = `You are Sofia, a friendly coordinator at Arnian Moving, a family
 
 Goal: collect what our moving team needs to prepare the quote. A team member will contact them shortly with it.
 
-Opening (they just picked up and said hello):
-- First confirm who you're talking to: "Hi, is this {{first_name}}?"
-- Then give context before any question, in your own words: you're Sofia from Arnian Moving, they sent a quote request on our website a few minutes ago for their move from {{from}} to {{to}}, and you have a few quick questions so the team can put together an accurate quote. Ask if now is a good time.
+Opening: you have already said "Hi, is this {{first_name}}?"
+- When they answer, give context before any question, in your own words: you're Sofia from Arnian Moving, they sent a quote request on our website a few minutes ago for their move from {{from}} to {{to}}, and you have a few quick questions so the team can put together an accurate quote. Ask if now is a good time.
 - If they sound confused at any point, calmly re-explain why you're calling. Never give up after one confused answer.
 
 Never give prices, estimates, discounts, delivery times or promises. If asked, say the team will review everything and send the quote shortly.
@@ -83,9 +82,10 @@ const llmBody = {
     temperature: 0.2,
   },
   general_prompt: PROMPT,
-  // Wait for their "Hello?" like a person would, then the prompt's opening takes over.
-  begin_message: null,
-  start_speaker: "user",
+  // She speaks first so a missed "hello" can never leave the line silent (reminders only fire after
+  // agent speech), but only a short question, after a pause long enough to bring the phone to the ear.
+  begin_message: "Hi, is this {{first_name}}?",
+  start_speaker: "agent",
   default_dynamic_variables: { first_name: "there", name: "the customer", from: "unknown", to: "unknown", move_date: "not set", email: "none" },
   general_tools: [
     { type: "end_call", name: "end_call", description: "End the call once goodbyes are said, or right away if they did not request a quote." },
@@ -103,8 +103,12 @@ const agentBody = {
   ambient_sound: "call-center",
   ambient_sound_volume: 0.2,
   handbook_config: { natural_filler_words: true, high_empathy: true },
-  // Filters the caller's background noise and side voices so they don't read as interruptions.
-  denoising_mode: "noise-and-background-speech-cancellation",
+  // Plain noise cancellation. The "background speech" mode erased a real caller's voice entirely.
+  denoising_mode: "noise-cancellation",
+  begin_message_delay_ms: 1800,
+  // No answer to the greeting: up to two "Hello? Can you hear me?" nudges 6s apart, then the silence timeout ends it.
+  reminder_trigger_ms: 6000,
+  reminder_max_count: 2,
   webhook_url: WEBHOOK_URL,
   webhook_events: ["call_analyzed"],
   post_call_analysis_data: ANALYSIS,
