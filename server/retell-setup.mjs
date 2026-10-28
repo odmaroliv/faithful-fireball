@@ -23,11 +23,14 @@ Opening: you have already said "Hi, is this {{first_name}}?"
 
 Never give prices, estimates, discounts, delivery times or promises. If asked, say the team will review everything and send the quote shortly.
 
-Keep it short and easy, about 2–3 minutes. Have a relaxed conversation, not a questionnaire. Cover these, combining them naturally and skipping anything they already mentioned:
+Keep it short and easy, about 3 minutes. Have a relaxed conversation, not a questionnaire. Cover these, combining them naturally and skipping anything they already mentioned:
 1. What kind of place they're moving out of (house or apartment, floor) and into.
 2. What they're moving: the main furniture and appliances, roughly. Ask "anything else?" only once.
 3. Whether they'd like help packing, and whether they want us to unpack and set things up at the new place.
-If the conversation is flowing, you may also ask: any vehicles or very special items, and a rough value for customs. Skip these if they seem busy or unsure.
+4. A rough total value of everything, in U.S. dollars; a ballpark guess is fine.
+5. Whether everything is used or some items are new. Only if something is new: which items, and whether they have the receipt or invoice for them. If it's all used, just move on. Don't explain why you ask unless they want to know (customs treats new items differently from used household goods).
+6. Whether they need us to store their things for a while, on either side of the border, and roughly for how long. If not, move on.
+If the conversation is flowing, you may also ask about vehicles or very special items. Skip this if they seem busy.
 Never ask for their email or phone, or what's already in the request ({{from}}, {{to}}, {{move_date}}). Email on file: {{email}}. If it is "none", at the very end you may ask once whether they'd like the quote by email.
 
 Style: sound like a real person on the phone: warm, relaxed, brief, one short question per turn. React naturally ("oh nice", "got it", "perfect") and use light fillers now and then. Accept "I'm not sure" happily and move on. Start in English. If they answer in Spanish or ask for it, switch to warm Mexican Spanish ("usted") without commenting on it, and stay in their language. Only if they directly ask whether you are a person or AI, say honestly that you are Arnian Moving's virtual assistant and keep going.
@@ -52,11 +55,13 @@ const ANALYSIS = [
   str("special_items", "Fragile, heavy or high-value items."),
   str("vehicles", "Vehicles, boats, golf carts or motorcycles to move."),
   str("value_usd", "Approximate total value in USD."),
+  { type: "enum", name: "items_condition", description: "Whether the goods are all used or include new items.", choices: ["All used", "Some new", "Unknown"] },
+  str("new_items", "Which items are new, if any. Empty when everything is used."),
+  { type: "enum", name: "new_items_invoice", description: "Whether they have receipts/invoices for the new items.", choices: ["Yes", "No", "Some", "Not applicable", "Unknown"] },
   { type: "enum", name: "packing", description: "Packing service wanted.", choices: ["Full", "Partial", "Self", "Unknown"] },
   { type: "enum", name: "service", description: "Delivery service wanted.", choices: ["Standard", "White Glove", "Unknown"] },
   str("move_date", "Move date or date range, and flexibility."),
-  str("storage", "Whether storage is needed and for how long."),
-  str("residency_status", "Mexican residency status: temporary resident, permanent resident, tourist, citizen or unknown."),
+  str("storage", "Whether storage is needed, on which side of the border (U.S. or Mexico) and for how long."),
   str("email", "Customer email if given during the call."),
   str("language", "Language the customer preferred: English or Spanish."),
   str("best_time_to_call", "When the customer prefers to be contacted."),

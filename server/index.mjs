@@ -251,10 +251,10 @@ async function emailCallReport(call) {
     `Artículos especiales: ${val(c.special_items)}`,
     `Vehículos: ${val(c.vehicles)}`,
     `Valor aprox.: ${val(c.value_usd)}`,
+    `Estado: ${val(c.items_condition)}${c.new_items ? ` — nuevos: ${c.new_items} (factura: ${val(c.new_items_invoice)})` : ""}`,
     `Empaque: ${val(c.packing)}`,
     `Servicio: ${val(c.service)}`,
     `Almacenaje: ${val(c.storage)}`,
-    `Estatus migratorio: ${val(c.residency_status)}`,
     `Idioma preferido: ${val(c.language)}`,
     `Mejor horario para llamar: ${val(c.best_time_to_call)}`,
     `Notas extra: ${val(c.extra_notes)}`,
@@ -285,7 +285,10 @@ async function emailCallReport(call) {
     dest_city: lead.to,
     dest_address: val(c.dest_address),
     dest_floor_access: val(c.dest_access),
-    items: [c.items, c.special_items, c.vehicles].filter(Boolean).join(" · ") || "No indicado",
+    items:
+      [c.items, c.special_items, c.vehicles, c.new_items && `NUEVOS: ${c.new_items} (factura: ${val(c.new_items_invoice)})`]
+        .filter(Boolean)
+        .join(" · ") || "No indicado",
     boxes: val(c.boxes),
     value: val(c.value_usd),
     packing: val(c.packing),
