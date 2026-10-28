@@ -5,70 +5,99 @@ import { siteConfig } from '../config/site';
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
+  ogType?: string;
+  canonicalPath?: string;
+  noindex?: boolean;
 }
 
-const { 
-  title = siteConfig.title, 
-  description = siteConfig.description 
+const site = `https://${siteConfig.domain}`;
+
+// Pages are served as folders (/blog/ , /blog/post/), so the canonical URL
+// always ends in "/" — this matches what Google already indexes.
+const withSlash = (path: string) => (path.endsWith("/") ? path : `${path}/`);
+
+const {
+  title = siteConfig.title,
+  description = siteConfig.description,
+  ogImage = `${site}/images/og-image.jpg`,
+  ogType = "website",
+  canonicalPath = Astro.url.pathname,
+  noindex = false,
 } = Astro.props;
 
-// Join keywords array into a comma-separated string
-const keywordsString = siteConfig.keywords.join(", ");
+const canonical = `${site}${withSlash(canonicalPath)}`;
+
+const businessSchema = {
+  "@context": "https://schema.org",
+  "@type": "MovingCompany",
+  "@id": `${site}/#company`,
+  name: siteConfig.company.name,
+  legalName: siteConfig.company.legalName,
+  description: siteConfig.description,
+  url: `${site}/`,
+  logo: `${site}/images/logo.png`,
+  image: `${site}/images/og-image.jpg`,
+  telephone: siteConfig.contact.phone,
+  email: siteConfig.contact.email,
+  foundingDate: String(siteConfig.company.foundedYear),
+  knowsLanguage: ["en", "es"],
+  address: siteConfig.contact.locations.map((loc) => ({
+    "@type": "PostalAddress",
+    streetAddress: loc.address,
+    addressLocality: loc.city,
+    addressRegion: loc.state,
+    postalCode: loc.postalCode,
+    addressCountry: loc.country,
+  })),
+  areaServed: [
+    { "@type": "State", name: "California" },
+    { "@type": "State", name: "Baja California" },
+    { "@type": "State", name: "Baja California Sur" },
+    ...siteConfig.destinations.map((name) => ({ "@type": "City", name })),
+  ],
+  parentOrganization: {
+    "@type": "Organization",
+    name: "Arnian Group",
+    url: "https://arniangroup.com/",
+  },
+  sameAs: [siteConfig.social.facebook, siteConfig.social.instagram, siteConfig.social.linkedin],
+};
 ---
 
 <!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/images/icono.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="/images/icono.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    
-    <!-- SEO Meta Tags -->
-    <meta name="keywords" content={keywordsString} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <!-- Social sharing -->
+    <meta property="og:site_name" content={siteConfig.company.name} />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={`https://${siteConfig.domain}/`} />
-    <meta property="og:image" content={`https://${siteConfig.domain}/images/ogimage.jpg`} />
-    
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <!-- Font preloads -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-    
+
     <!-- Structured data -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": siteConfig.company.name,
-      "description": siteConfig.description,
-      "image": `https://${siteConfig.domain}/images/icono.png`,
-      "url": `https://${siteConfig.domain}`,
-      "telephone": siteConfig.contact.phone,
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": siteConfig.contact.locations[0].address,
-        "addressLocality": siteConfig.contact.locations[0].city,
-        "addressRegion": siteConfig.contact.locations[0].state,
-        "postalCode": siteConfig.contact.locations[0].postalCode,
-        "addressCountry": siteConfig.contact.locations[0].country
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": siteConfig.contact.locations[0].latitude,
-        "longitude": siteConfig.contact.locations[0].longitude
-      },
-      "sameAs": [
-        siteConfig.social.linkedin,
-        siteConfig.social.facebook,
-        siteConfig.social.instagram
-      ]
-    })}>
-    </script>
-    
+    <script type="application/ld+json" set:html={JSON.stringify(businessSchema)}></script>
+
     <!-- Meta Pixel Code -->
     <script is:inline>
       !function(f,b,e,v,n,t,s)

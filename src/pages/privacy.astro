@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../config/site';
+---
+
+<Layout
+  title="Privacy Policy | Arnian Moving"
+  description="How Arnian Moving collects and uses the information you share when you ask for a moving quote."
+>
+  <Header />
+  <main class="py-12 md:py-16 bg-white">
+    <article class="container-custom max-w-3xl prose prose-lg prose-headings:text-brand-primary prose-a:text-brand-accent">
+      <h1>Privacy policy</h1>
+      <p><em>Last updated: October 2026</em></p>
+
+      <p>
+        This page explains, in plain language, what information {siteConfig.company.name} collects through this website
+        and what we do with it.
+      </p>
+
+      <h2>What we collect</h2>
+      <p>When you request a quote, we collect what you type into the form:</p>
+      <ul>
+        <li>Your name, phone number and, if you share it, your email address.</li>
+        <li>Details about your move: where from and to, approximate date, addresses, items, and the service you want.</li>
+        <li>Photos of your belongings, if you choose to upload them.</li>
+      </ul>
+
+      <h2>How we use it</h2>
+      <p>
+        We use this information only to contact you about your move, prepare your quote, and carry out the move if you
+        hire us — including the customs paperwork it requires. We do not sell your information or share it with anyone
+        for their own marketing.
+      </p>
+
+      <h2>Services that help us run this website</h2>
+      <ul>
+        <li><strong>EmailJS</strong> delivers your quote request to our inbox.</li>
+        <li><strong>ImgBB</strong> stores the photos you upload as private links, which are deleted automatically after 10 days.</li>
+        <li>
+          <strong>Google</strong> and <strong>Meta (Facebook)</strong> measurement tags tell us how many people visit the site
+          and request a quote. They use cookies; you can block them in your browser settings.
+        </li>
+      </ul>
+
+      <h2>Your choices</h2>
+      <p>
+        You can ask us at any time to see, correct, or delete the information you sent us. Write to
+        <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a> or call
+        <a href={`tel:${siteConfig.contact.phoneLink}`}>{siteConfig.contact.phone}</a>.
+      </p>
+    </article>
+  </main>
+  <Footer />
+</Layout>

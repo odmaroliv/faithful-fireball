@@ -5,7 +5,7 @@ pubDate: 2025-04-05
 updatedDate: 2025-04-05
 heroImage: "../../images/blog/loreto-hero.webp"
 tags: ["loreto", "baja california sur", "international moving", "shipping"]
-author: "Baja Pacific Team"
+author: "Arnian Moving Team"
 featured: false
 destination: "Loreto"
 ---

@@ -9,9 +9,9 @@ export const siteConfig = {
   // Basic site information
   name: "Arnian Moving",
   domain: "arnianmoving.com",
-  title: "Arnian Moving | Stress-Free Cross-Border Moving to Baja California",
+  title: "Arnian Moving | Cross-Border Movers Between California and Baja",
   description:
-    "Expert cross-border moving services from California and the U.S. to Baja California Norte & Sur. Trusted by expats and retirees for secure, stress-free relocations.",
+    "Bilingual cross-border movers between California and Baja California, in both directions. Packing, customs paperwork, transport and delivery from Tijuana to Cabo.",
 
   // Company information
   company: {
@@ -19,14 +19,17 @@ export const siteConfig = {
     legalName: "Arnian Moving LLC",
     foundedYear: 2013,
     tagline: "Stress-free cross-border moving from California to Baja",
-    experience: "10+ years of experience",
+    experience: "Moving families across the border since 2013",
   },
 
   // Contact information
   contact: {
-    phone: "+1 (619) 632 2570",
+    // Calls go to one line, WhatsApp messages to another.
+    phone: "+52 (664) 388 6256",
+    phoneLink: "+526643886256", // for tel: links
     email: "info@arnianmoving.com",
-    whatsapp: "+16196322570", // No spaces or special chars for WhatsApp links
+    whatsapp: "+526643850871", // No spaces or special chars for WhatsApp links
+    whatsappDisplay: "+52 (664) 385 0871",
     operatingHours: "Mon-Fri, 9am-5pm PST",
     locations: [
       {
@@ -52,10 +55,10 @@ export const siteConfig = {
 
   // Social media links
   social: {
-    facebook: "https://www.facebook.com/BajaPacificRelocation",
+    facebook: "https://www.facebook.com/arnianmoving/",
     instagram: "https://www.instagram.com/arnianmoving",
     linkedin: "https://www.linkedin.com/company/arnian-moving",
-    messenger: "https://m.me/BajaPacificRelocation",
+    messenger: "https://m.me/arnianmoving",
   },
 
   // Destinations served
@@ -71,49 +74,8 @@ export const siteConfig = {
     "La Paz",
     "Loreto",
     "Todos Santos",
-    "Mulege",
+    "Mulegé",
     "San Felipe",
     "Tecate",
-  ],
-
-  // SEO keywords
-  keywords: [
-    "cross-border moving Baja",
-    "moving to Baja California",
-    "Baja relocation experts",
-    "international moving Baja",
-    "trusted moving Baja California",
-    "relocation for expats",
-    "relocation for retirees Baja",
-    "expat moving services Baja",
-    "Baja Norte moving",
-    "Baja Sur moving",
-    "safe international moving Mexico",
-    "secure relocation Baja",
-    "best moving company Baja",
-    "hire movers California to Baja",
-    "moving service California to Baja",
-    "long distance moving Baja California",
-    "how to move to Baja California",
-    "moving company in Rosarito",
-    "moving company in Ensenada",
-    "moving company in La Paz",
-    "moving company in Los Cabos",
-    "moving company in San Quintín",
-    "moving company Tijuana",
-    "cross-border moving Tijuana",
-    "Otay moving services",
-    // Spanish keywords for bilingual SEO:
-    "mudanzas California a Baja California",
-    "mudanzas internacionales Baja",
-    "empresa de mudanzas en Baja California",
-    "mudanzas para expatriados Baja",
-    "mudanzas para jubilados Baja",
-    "easy moving to Baja California",
-    "reliable moving company Baja",
-    "secure moving to Mexico",
-    "quote for moving to Baja California",
-    "affordable cross-border moving Baja",
-    "how much does it cost to move to Baja California",
   ],
 };

@@ -6,6 +6,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Keep in-page jumps (e.g. /#contact) from landing under the sticky header. */
+[id] {
+  scroll-margin-top: 96px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 .section-padding {
   @apply py-16 md:py-24;
 }

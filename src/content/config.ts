@@ -11,7 +11,7 @@ export const collections = {
       updatedDate: z.date().optional(),
       heroImage: z.string().optional(),
       tags: z.array(z.string()).default(["baja"]),
-      author: z.string().default("Baja Pacific Team"),
+      author: z.string().default("Arnian Moving Team"),
       featured: z.boolean().default(false),
       destination: z.string(),
     }),

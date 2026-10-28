@@ -1,0 +1,80 @@
+---
+import { siteConfig } from "../config/site";
+
+// Plain answers to the questions people actually ask before calling. The same
+// text is published as FAQPage structured data so search engines and AI
+// assistants can quote it accurately.
+const faqs = [
+  {
+    q: "Do you move from Baja back to the United States too?",
+    a: "Yes. We move households in both directions: from California and the rest of the U.S. to Baja California and Baja California Sur, and from Baja back to the U.S. That includes the customs process on both sides of the border.",
+  },
+  {
+    q: "Which places in Baja do you serve?",
+    a: `All of Baja California and Baja California Sur, including ${siteConfig.destinations.join(", ")}. On the U.S. side we pick up and deliver throughout California, and we also do local moves within San Diego County.`,
+  },
+  {
+    q: "Do you take care of customs?",
+    a: "Yes. We prepare the paperwork for your household goods, handle the customs inspection, and keep you updated at each stage — pickup, arrival at our Tijuana warehouse, customs, and the delivery date at your new home. You will need to tell us the approximate value of what you are moving, because customs asks for it.",
+  },
+  {
+    q: "How much does a move to or from Baja cost?",
+    a: "It depends on how much you are moving, the distance, whether you want us to pack, and access at both homes (stairs, elevators, narrow roads). Send us a few details or photos through the quote form and we will call you with a clear price. No upselling and no surprise charges.",
+  },
+  {
+    q: "Can you pack everything for me?",
+    a: "Yes. We can pack your whole home, only the fragile and special items, or you can pack yourself and we load and transport. With our White Glove service we also place everything in each room, unpack boxes, assemble furniture, and take away the packing materials.",
+  },
+  {
+    q: "Can you move my car, truck or motorcycle?",
+    a: "Yes. We transport cars, trucks, SUVs and motorcycles between the U.S. and Baja California, and help with the paperwork needed to cross the border.",
+  },
+  {
+    q: "Will I be able to talk to someone in English?",
+    a: "Yes. Our team is bilingual in English and Spanish, from the first call through delivery.",
+  },
+  {
+    q: "How do I get started?",
+    a: `Fill out the quote form on this page — it takes about two minutes — or call us at ${siteConfig.contact.phone}. You can also message us on WhatsApp at ${siteConfig.contact.whatsappDisplay}. We will call you back to go over your move.`,
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+---
+
+<section id="faq" class="py-14 md:py-20 bg-brand-bg" aria-labelledby="faq-heading">
+  <div class="container-custom">
+    <div class="mx-auto max-w-3xl">
+      <div class="text-center mb-10 md:mb-12">
+        <h2 id="faq-heading" class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-brand-primary">Common questions</h2>
+        <p class="text-base sm:text-lg text-brand-gray">
+          Can't find your answer? Call us at
+          <a href={`tel:${siteConfig.contact.phoneLink}`} class="font-semibold text-brand-accent underline-offset-2 hover:underline">{siteConfig.contact.phone}</a>.
+        </p>
+      </div>
+
+      <div class="divide-y divide-brand-border overflow-hidden rounded-xl border border-brand-border bg-white">
+        {faqs.map((f, i) => (
+          <details class="group" open={i === 0}>
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-left text-base font-semibold text-brand-primary hover:bg-brand-bg/60 focus:outline-none focus-visible:bg-brand-bg md:px-6 md:py-5 md:text-lg">
+              <h3>{f.q}</h3>
+              <svg class="h-5 w-5 flex-none text-brand-secondary transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+              </svg>
+            </summary>
+            <p class="px-5 pb-5 text-base leading-relaxed text-brand-gray md:px-6">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</section>

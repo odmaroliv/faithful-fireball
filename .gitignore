@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# full-resolution source videos (web versions live in public/videos)
+media-originals/

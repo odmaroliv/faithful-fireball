@@ -11,7 +11,7 @@ tags:
     "real estate",
     "baja lifestyle",
   ]
-author: "Baja Pacific Team"
+author: "Arnian Moving Team"
 featured: true
 destination: "Todos Santos"
 ---

@@ -48,11 +48,11 @@ const destinations = [...new Set(posts.map((post: CollectionEntry<'blog'>) => po
       <div class="mb-8">
         <h2 class="text-xl font-semibold mb-4 text-brand-primary">Browse by Destination</h2>
         <div class="flex flex-wrap gap-2">
-          <a href="/blog" class="px-4 py-2 bg-brand-primary text-white rounded-full text-sm">
+          <a href="/blog/" class="px-4 py-2 bg-brand-primary text-white rounded-full text-sm">
             All Posts
           </a>
        {destinations.map((value: string) => (
-  <a href={`/blog/destination/${value.toLowerCase().replace(/\s+/g, '-')}`}
+  <a href={`/blog/destination/${value.toLowerCase().replace(/\s+/g, '-')}/`}
     class="px-4 py-2 bg-brand-secondary/30 hover:bg-brand-secondary/50 text-brand-primary rounded-full text-sm">
     {value}
   </a>
@@ -85,7 +85,7 @@ const destinations = [...new Set(posts.map((post: CollectionEntry<'blog'>) => po
                 )}
               </div>
               <h2 class="text-xl font-semibold mb-2 text-brand-primary">
-                <a href={`/blog/${post.slug}`} class="hover:text-brand-secondary transition-colors">
+                <a href={`/blog/${post.slug}/`} class="hover:text-brand-secondary transition-colors">
                   {post.data.title}
                 </a>
               </h2>
@@ -100,7 +100,7 @@ const destinations = [...new Set(posts.map((post: CollectionEntry<'blog'>) => po
                     day: 'numeric'
                   })}
                 </span>
-                <a href={`/blog/${post.slug}`} class="text-brand-primary font-medium hover:text-brand-secondary text-sm flex items-center gap-1 transition-colors">
+                <a href={`/blog/${post.slug}/`} class="text-brand-primary font-medium hover:text-brand-secondary text-sm flex items-center gap-1 transition-colors">
                   Read more
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />

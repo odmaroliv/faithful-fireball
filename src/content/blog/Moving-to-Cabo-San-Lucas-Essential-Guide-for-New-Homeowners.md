@@ -5,7 +5,7 @@ pubDate: 2025-04-25
 updatedDate: 2025-04-25
 heroImage: "../../images/blog/cabo-san-lucas-hero.jpeg"
 tags: ["cabo san lucas", "moving", "relocation", "shipping"]
-author: "Baja Pacific Team"
+author: "Arnian Moving Team"
 featured: true
 destination: "Cabo San Lucas"
 ---

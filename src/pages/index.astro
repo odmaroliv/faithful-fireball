@@ -7,42 +7,29 @@ import Services from '../components/Services.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import Testimonials from '../components/Testimonials.astro';
 import Contact from '../components/Contact.astro';
+import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
 import LatestBlogPosts from '@/components/LatestBlogPosts.astro';
 import FleetGallery from '@/components/FleetGallery.astro';
+import VideoShowcase from '@/components/VideoShowcase.astro';
 ---
 
-<Layout 
-  title="Arnian Moving | Stress-Free Cross-Border Moving to Baja California" 
-  description="Expert cross-border moving services from California to Baja California Norte & Sur. Trusted by expats and retirees for secure, stress-free relocations."
+<Layout
+  title="Arnian Moving | Cross-Border Movers Between California and Baja"
+  description="Bilingual cross-border movers between California and Baja California, in both directions. Packing, customs paperwork, transport and delivery from Tijuana to Cabo. Free quote."
 >
   <Header />
   <main>
     <Hero />
-    <FleetGallery/>
     <Contact />
-    <WhyChooseUs />
-    <Services />
-    <LatestBlogPosts />
+    <Testimonials />
     <HowItWorks />
-    
+    <Services />
+    <FleetGallery />
+    <VideoShowcase />
+    <WhyChooseUs />
+    <FAQ />
+    <LatestBlogPosts />
   </main>
   <Footer />
 </Layout>
-
-<script>
-  // Smooth scroll functionality
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', (e) => {
-      e.preventDefault();
-      
-      const target = document.querySelector((anchor as HTMLAnchorElement).getAttribute('href')!);
-      if (target) {
-        window.scrollTo({
-          top: (target as HTMLElement).offsetTop - 80, // Adjust for header height
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-</script>

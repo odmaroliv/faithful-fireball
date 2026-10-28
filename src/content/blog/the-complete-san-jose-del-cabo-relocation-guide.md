@@ -11,7 +11,7 @@ tags:
     "moving to mexico",
     "property owners",
   ]
-author: "Baja Pacific Team"
+author: "Arnian Moving Team"
 featured: false
 destination: "San Jose del Cabo"
 ---
