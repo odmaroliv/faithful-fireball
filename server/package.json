@@ -1,0 +1,13 @@
+{
+  "name": "arnian-leads",
+  "private": true,
+  "type": "module",
+  "description": "Receives quote-form leads, emails them, and has the Retell agent call people who skip the details step.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node index.mjs",
+    "setup-retell": "node retell-setup.mjs"
+  }
+}

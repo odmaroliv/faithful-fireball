@@ -1,10 +1,16 @@
 import { useState, useEffect, useRef } from "react";
+import emailjs from "@emailjs/browser";
 import { siteConfig } from "../config/site";
 
 const EMAILJS_KEY = import.meta.env.PUBLIC_EMAILJS_KEY;
 const SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE;
 const TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE;
 const IMGBB_KEY = import.meta.env.PUBLIC_IMGBB_KEY;
+// Seconds before uploaded photos expire on ImgBB (default 30 days).
+const IMGBB_EXPIRATION = import.meta.env.PUBLIC_IMGBB_EXPIRATION || "2592000";
+// Cloud Run service (server/) that emails the lead and schedules the follow-up call.
+// When it is not set or not reachable, the form emails straight from the browser.
+const LEADS_API = import.meta.env.PUBLIC_LEADS_API;
 // Optional: the label of a Google Ads "Lead" conversion (the part after "AW-666721564/").
 // When it is not set, only the generic generate_lead event is sent.
 const ADS_ID = "AW-666721564";
@@ -156,6 +162,8 @@ const LEAD_STEPS = 2;
 const DETAIL_STEPS = STEPS.length - LEAD_STEPS - 1;
 
 const EMPTY = {
+  leadId: "",
+  leadSent: false,
   direction: "",
   fromChip: "",
   fromText: "",
@@ -470,8 +478,9 @@ export default function ContactWizard() {
   });
   const [d, setD] = useState(() => {
     try {
-      const saved = localStorage.getItem("cw2_data");
-      return saved ? { ...EMPTY, ...JSON.parse(saved) } : EMPTY;
+      const saved = JSON.parse(localStorage.getItem("cw2_data") || "null");
+      // A request already sent starts over, so it is not sent a second time.
+      return saved && !saved.leadSent ? { ...EMPTY, ...saved } : EMPTY;
     } catch {
       return EMPTY;
     }
@@ -482,6 +491,7 @@ export default function ContactWizard() {
   const [showMissing, setShowMissing] = useState(false);
   const [uploadedPhotos, setUploadedPhotos] = useState([]);
   const [uploadingPhotos, setUploadingPhotos] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
   const headingRef = useRef(null);
   const firstRender = useRef(true);
 
@@ -531,7 +541,8 @@ export default function ContactWizard() {
     }
     if (s === "contact") {
       if (!d.name.trim()) m.push("Your name");
-      if (d.phone.replace(/\D/g, "").length < 7) m.push("A phone number we can call or text");
+      if (d.phone.replace(/\D/g, "").length < 10) m.push("A phone number we can call or text, with area code");
+      if (d.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email.trim())) m.push("A valid email, or leave it empty");
     }
     return m;
   };
@@ -601,22 +612,24 @@ export default function ContactWizard() {
         formData.append("key", IMGBB_KEY);
         formData.append("image", b64);
         formData.append("name", p.name);
-        formData.append("privacy", "hidden");
-        formData.append("expiration", "864000");
+        formData.append("expiration", IMGBB_EXPIRATION);
         const res = await fetch("https://api.imgbb.com/1/upload", {
           method: "POST",
           body: formData,
         });
         const data = await res.json();
         if (data.success) results.push(data.data.url);
-      } catch {}
+        else console.error("ImgBB upload failed", data);
+      } catch (e) {
+        console.error("ImgBB upload failed", e);
+      }
     }
     return results;
   };
 
   // stage "lead": just route + contact, sent as soon as we have a phone number.
   // stage "details": everything, sent only if the visitor chooses to add more.
-  const send = async (stage) => {
+  const send = async (stage, leadId) => {
     const isLead = stage === "lead";
     const from = placeOf(d, "from");
     const to = placeOf(d, "to");
@@ -645,7 +658,7 @@ export default function ContactWizard() {
             .join(' <span style="color:#c9d8f0;">&bull;</span> ')
         : `<span style="color:#9ca3af;">${isLead ? pending : "Ninguna"}</span>`;
 
-    await window.emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+    const emailParams = {
       // Plain fields: EmailJS HTML-escapes {{var}} on its own — don't double-escape here.
       name: d.name,
       from_name: d.name,
@@ -677,7 +690,7 @@ export default function ContactWizard() {
 
       items: isLead ? pending : d.items || "No indicado",
       boxes: isLead ? pending : d.boxesCount || "No indicado",
-      value: !isLead && d.value ? `$${d.value} USD` : isLead ? pending : "No proporcionado",
+      value: !isLead && d.value ? `$${d.value.replace(/[$\s]|usd/gi, "")} USD` : isLead ? pending : "No proporcionado",
       packing: isLead ? pending : d.packing || "No indicado",
       service: isLead ? pending : d.service || "No indicado",
 
@@ -688,14 +701,39 @@ export default function ContactWizard() {
       origin_maps_html: linkOrFallback("", ""),
       dest_maps_html: linkOrFallback("", ""),
       photos_html: photosHtml,
-    }, EMAILJS_KEY);
+    };
+
+    if (LEADS_API) {
+      try {
+        const res = await fetch(`${LEADS_API}/lead`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            leadId,
+            stage,
+            website: honeypot,
+            lead: { name: d.name, phone: d.phone, email: d.email, from, to, date },
+            emailParams,
+          }),
+        });
+        if (res.ok) return;
+        console.error("Lead API error", res.status);
+      } catch (e) {
+        console.error("Lead API unreachable", e);
+      }
+    }
+    // Fallback: the lead still reaches the inbox, just without the follow-up call.
+    await emailjs.send(SERVICE_ID, TEMPLATE_ID, emailParams, { publicKey: EMAILJS_KEY });
   };
 
   const sendLead = async () => {
     setSending(true);
     setErr("");
+    const leadId = d.leadId || crypto.randomUUID();
+    set("leadId", leadId);
     try {
-      await send("lead");
+      await send("lead", leadId);
+      set("leadSent", true);
       track("generate_lead", { direction: d.direction });
       if (ADS_LEAD_LABEL) {
         try {
@@ -703,7 +741,8 @@ export default function ContactWizard() {
         } catch {}
       }
       go(STEPS.indexOf("sent"));
-    } catch {
+    } catch (e) {
+      console.error("Lead send failed", e);
       setErr("We could not send your request just now.");
     } finally {
       setSending(false);
@@ -714,10 +753,11 @@ export default function ContactWizard() {
     setSending(true);
     setErr("");
     try {
-      await send("details");
+      await send("details", d.leadId);
       track("quote_details_sent");
       finish();
-    } catch {
+    } catch (e) {
+      console.error("Details send failed", e);
       setErr("We could not send these details, but we already have your contact info and will call you.");
     } finally {
       setSending(false);
@@ -787,6 +827,7 @@ export default function ContactWizard() {
                     id="cw-date"
                     className={`${inputCls} mb-3`}
                     type="date"
+                    min={new Date().toISOString().slice(0, 10)}
                     value={d.moveDate}
                     onChange={(e) => set("moveDate", e.target.value)}
                   />
@@ -868,6 +909,17 @@ export default function ContactWizard() {
                   autoComplete="email"
                 />
               </div>
+              {/* Honeypot: hidden from people, filled in by bots. */}
+              <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+                <label htmlFor="cw-website">Website</label>
+                <input
+                  id="cw-website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+              </div>
             </div>
             <Errors list={missingList} />
             {err && (
@@ -879,6 +931,10 @@ export default function ContactWizard() {
             <PrimaryButton onClick={() => tryNext(sendLead)} disabled={sending} loading={sending}>
               {sending ? "Sending…" : "Request my call back"}
             </PrimaryButton>
+            <p className="mt-2 text-center text-[11px] leading-snug text-brand-gray/50">
+              By submitting, you agree Arnian Moving may call or text this number about your quote, including with
+              automated or AI-assisted calls. Calls may be recorded.
+            </p>
             <BackBtn onBack={back} />
             <StepProgress current={2} total={LEAD_STEPS} label="Step" />
           </div>
