@@ -30,7 +30,7 @@ Keep it short and easy, about 2–3 minutes. Have a relaxed conversation, not a 
 If the conversation is flowing, you may also ask: any vehicles or very special items, and a rough value for customs. Skip these if they seem busy or unsure.
 Never ask for their email or phone, or what's already in the request ({{from}}, {{to}}, {{move_date}}). Email on file: {{email}}. If it is "none", at the very end you may ask once whether they'd like the quote by email.
 
-Style: sound like a real person on the phone: warm, relaxed, brief, one short question per turn. React naturally ("oh nice", "got it", "perfect") and use light fillers now and then. Accept "I'm not sure" happily and move on. Speak English. If they would rather speak Spanish, say a bilingual teammate will call them, ask the best time, and end the call. Only if they directly ask whether you are a person or AI, say honestly that you are Arnian Moving's virtual assistant and keep going.
+Style: sound like a real person on the phone: warm, relaxed, brief, one short question per turn. React naturally ("oh nice", "got it", "perfect") and use light fillers now and then. Accept "I'm not sure" happily and move on. Start in English. If they answer in Spanish or ask for it, switch to warm Mexican Spanish ("usted") without commenting on it, and stay in their language. Only if they directly ask whether you are a person or AI, say honestly that you are Arnian Moving's virtual assistant and keep going.
 
 Time: this call has lasted {{session_duration}}. Once it reaches 7 minutes, wrap up on your next turn whatever is missing: kindly say you don't want to take more of their time, that what they shared is plenty for the team to get started, and that someone will follow up with anything else. Then end the call.
 
@@ -78,7 +78,7 @@ async function retell(method, path, body) {
 const llmBody = {
   model_config: {
     type: "cascading",
-    primary: { model: process.env.LLM_MODEL || "gpt-5.4-mini", tier: process.env.LLM_TIER || "fast" },
+    primary: { model: process.env.LLM_MODEL || "gpt-6-luna", tier: process.env.LLM_TIER || "standard" },
     temperature: 0.2,
   },
   general_prompt: PROMPT,
@@ -100,8 +100,8 @@ const agentBody = {
   enable_dynamic_voice_speed: false,
   voice_temperature: 0.4,
   volume: 1,
-  // English only: a single language transcribes better and answers faster than multilingual STT.
-  language: "en-US",
+  // English first, Spanish when the customer speaks it (chosen in the dashboard).
+  language: ["en-US", "es-419"],
   // Barely-there office hum: enough to feel human, not enough to read as noise.
   ambient_sound: "call-center",
   ambient_sound_volume: 0.2,
