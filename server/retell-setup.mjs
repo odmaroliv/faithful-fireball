@@ -95,8 +95,11 @@ const llmBody = {
 const agentBody = {
   agent_name: "Arnian Moving – quote follow-up",
   voice_id: VOICE_ID,
+  // Steady delivery: dynamic speed and full voice temperature made her jump between fast/slow and loud/soft.
   voice_speed: 1,
-  enable_dynamic_voice_speed: true,
+  enable_dynamic_voice_speed: false,
+  voice_temperature: 0.4,
+  volume: 1,
   // English only: a single language transcribes better and answers faster than multilingual STT.
   language: "en-US",
   // Barely-there office hum: enough to feel human, not enough to read as noise.
