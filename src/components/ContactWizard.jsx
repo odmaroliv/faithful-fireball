@@ -72,6 +72,63 @@ const SERVICE_OPTIONS = [
 // when the visitor's phone number was typed without a country code.
 const MX_AREA_CODES = ["664", "661", "646", "665", "686", "624", "612", "613", "615", "653"];
 
+// Country picker for the phone field. "OTHER" means the visitor types the full +code number.
+const COUNTRIES = [
+  { code: "US", dial: "1", name: "United States", placeholder: "(619) 555-0000", digits: 10 },
+  { code: "MX", dial: "52", name: "Mexico", placeholder: "664 123 4567", digits: 10 },
+  { code: "CA", dial: "1", name: "Canada", placeholder: "(604) 555-0000", digits: 10 },
+  { code: "OTHER", dial: "", name: "Other country", placeholder: "+44 20 7946 0000" },
+];
+const countryOf = (d) => COUNTRIES.find((c) => c.code === d.phoneCountry) || COUNTRIES[0];
+
+// "+<code> <number>" — what the team, WhatsApp link and follow-up call all use.
+function fullPhone(d) {
+  const v = d.phone.trim();
+  const c = countryOf(d);
+  if (!v) return "";
+  if (v.startsWith("+") || !c.dial) return v.startsWith("+") ? v : `+${v}`;
+  return `+${c.dial} ${v}`;
+}
+
+// Windows has no flag emoji, so the three flags we need are tiny inline SVGs.
+function Flag({ code, className }) {
+  const common = { viewBox: "0 0 30 20", className, "aria-hidden": "true" };
+  if (code === "US")
+    return (
+      <svg {...common}>
+        <rect width="30" height="20" fill="#fff" />
+        {[0, 2, 4, 6, 8, 10, 12].map((i) => (
+          <rect key={i} y={(i * 20) / 13} width="30" height={20 / 13} fill="#b22234" />
+        ))}
+        <rect width="13" height={(20 * 7) / 13} fill="#3c3b6e" />
+      </svg>
+    );
+  if (code === "MX")
+    return (
+      <svg {...common}>
+        <rect width="10" height="20" fill="#006847" />
+        <rect x="10" width="10" height="20" fill="#fff" />
+        <rect x="20" width="10" height="20" fill="#ce1126" />
+        <circle cx="15" cy="10" r="2.6" fill="#8c6a3f" />
+      </svg>
+    );
+  if (code === "CA")
+    return (
+      <svg {...common}>
+        <rect width="30" height="20" fill="#fff" />
+        <rect width="7.5" height="20" fill="#d52b1e" />
+        <rect x="22.5" width="7.5" height="20" fill="#d52b1e" />
+        <path d="M15 4l1.2 2.6 2-1-0.6 3.6 1.9-1.1-0.4 2.2 1.4.4-3.2 2.4.4 1.4H15.6V17h-1.2v-2.5H11.3l.4-1.4-3.2-2.4 1.4-.4-.4-2.2 1.9 1.1-.6-3.6 2 1z" fill="#d52b1e" />
+      </svg>
+    );
+  return (
+    <svg {...common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9s1-6.5 3.5-9z" />
+    </svg>
+  );
+}
+
 function phoneToWhatsAppLink(raw) {
   if (!raw) return "";
   let v = raw.trim();
@@ -172,6 +229,7 @@ const EMPTY = {
   moveDate: "",
   flexible: false,
   name: "",
+  phoneCountry: "US",
   phone: "",
   email: "",
   items: "",
@@ -541,8 +599,12 @@ export default function ContactWizard() {
     }
     if (s === "contact") {
       if (!d.name.trim()) m.push("Your name");
-      if (d.phone.replace(/\D/g, "").length < 10) m.push("A phone number we can call or text, with area code");
-      if (d.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email.trim())) m.push("A valid email, or leave it empty");
+      const c = countryOf(d);
+      const digits = d.phone.replace(/\D/g, "");
+      const typedCode = d.phone.trim().startsWith("+");
+      if (c.digits && !typedCode ? digits.length !== c.digits : digits.length < 8)
+        m.push(c.digits ? `A ${c.digits}-digit phone number, with area code` : "Your phone number with its country code, e.g. +44");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email.trim())) m.push("Your email, so we can send you the quote");
     }
     return m;
   };
@@ -635,6 +697,7 @@ export default function ContactWizard() {
     const to = placeOf(d, "to");
     const date = d.flexible ? "Flexible / not sure yet" : d.moveDate;
     const pending = "Pendiente — confirmar por teléfono";
+    const phone = fullPhone(d);
 
     let photoUrls = [];
     if (!isLead && uploadedPhotos.length > 0) {
@@ -648,8 +711,8 @@ export default function ContactWizard() {
     const dest = [d.destAddr || to, d.destFloor].filter(Boolean).join(" — ");
 
     const body = isLead
-      ? `NUEVO CONTACTO — llamar para cotizar\n\nContact: ${d.name} | ${d.phone} | ${d.email || "sin email"}\nDate: ${date}\nFrom: ${from}\nTo: ${to}\n\nEl cliente todavía no envía detalles de artículos o servicio.`
-      : `DETALLES DE COTIZACIÓN\n\nContact: ${d.name} | ${d.phone} | ${d.email || "sin email"}\nDate: ${date}\n\nFrom: ${origin}\nTo: ${dest}\nAccess notes: ${d.accessNotes || "N/A"}\n\nItems: ${d.items || "N/A"}\nBoxes: ${d.boxesCount || "N/A"}\nValue: ${d.value || "N/A"}\n\nPacking: ${d.packing || "N/A"}\nService: ${d.service || "N/A"}${photoLinks}`;
+      ? `NUEVO CONTACTO — llamar para cotizar\n\nContact: ${d.name} | ${phone} | ${d.email || "sin email"}\nDate: ${date}\nFrom: ${from}\nTo: ${to}\n\nEl cliente todavía no envía detalles de artículos o servicio.`
+      : `DETALLES DE COTIZACIÓN\n\nContact: ${d.name} | ${phone} | ${d.email || "sin email"}\nDate: ${date}\n\nFrom: ${origin}\nTo: ${dest}\nAccess notes: ${d.accessNotes || "N/A"}\n\nItems: ${d.items || "N/A"}\nBoxes: ${d.boxesCount || "N/A"}\nValue: ${d.value || "N/A"}\n\nPacking: ${d.packing || "N/A"}\nService: ${d.service || "N/A"}${photoLinks}`;
 
     const photosHtml =
       photoUrls.length > 0
@@ -662,9 +725,9 @@ export default function ContactWizard() {
       // Plain fields: EmailJS HTML-escapes {{var}} on its own — don't double-escape here.
       name: d.name,
       from_name: d.name,
-      reply_to: d.email || d.phone,
+      reply_to: d.email || phone,
       email: d.email || "No proporcionado",
-      phone: d.phone,
+      phone,
       message: body,
       destination: to,
       move_date: date,
@@ -696,7 +759,7 @@ export default function ContactWizard() {
 
       // HTML fragments built in JS (already escaped where user input is involved) —
       // use {{{triple-brace}}} for these in the template so EmailJS does not re-escape them.
-      whatsapp_link: phoneToWhatsAppLink(d.phone),
+      whatsapp_link: phoneToWhatsAppLink(phone),
       email_link: linkOrFallback(d.email ? `mailto:${d.email}` : "", d.email),
       origin_maps_html: linkOrFallback("", ""),
       dest_maps_html: linkOrFallback("", ""),
@@ -712,7 +775,7 @@ export default function ContactWizard() {
             leadId,
             stage,
             website: honeypot,
-            lead: { name: d.name, phone: d.phone, email: d.email, from, to, date },
+            lead: { name: d.name, phone, email: d.email, from, to, date },
             emailParams,
           }),
         });
@@ -784,7 +847,7 @@ export default function ContactWizard() {
           </h2>
           <p className="text-base leading-relaxed text-brand-gray/80">
             We have everything we need. We will call or message you at{" "}
-            <strong className="text-brand-gray">{d.phone}</strong> to go over your quote.
+            <strong className="text-brand-gray">{fullPhone(d)}</strong> to go over your quote.
           </p>
         </div>
       </div>
@@ -885,19 +948,56 @@ export default function ContactWizard() {
                 <label htmlFor="cw-phone" className={labelCls}>
                   Phone number (call, text or WhatsApp) *
                 </label>
-                <input
-                  id="cw-phone"
-                  className={inputCls}
-                  type="tel"
-                  value={d.phone}
-                  onChange={(e) => set("phone", e.target.value)}
-                  placeholder="Example: +1 (619) 555-0000"
-                  autoComplete="tel"
-                />
+                <div className="flex gap-2">
+                  <div className="relative flex-none">
+                    <Flag
+                      code={countryOf(d).code}
+                      className="pointer-events-none absolute left-3 top-1/2 h-4 w-6 -translate-y-1/2 rounded-sm text-brand-gray/60 shadow-[0_0_0_1px_rgba(0,0,0,0.08)]"
+                    />
+                    <label htmlFor="cw-phone-country" className="sr-only">
+                      Country code
+                    </label>
+                    <select
+                      id="cw-phone-country"
+                      value={d.phoneCountry}
+                      onChange={(e) => set("phoneCountry", e.target.value)}
+                      className={`${inputCls.replace("w-full ", "")} cursor-pointer appearance-none pl-11 pr-8`}
+                    >
+                      {COUNTRIES.map((c) => (
+                        <option key={c.code} value={c.code}>
+                          {c.dial ? `+${c.dial}` : "Other"}
+                          {c.code === "CA" ? " CA" : ""}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronRightIcon className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 rotate-90 text-brand-gray/60" />
+                  </div>
+                  <input
+                    id="cw-phone"
+                    className={`${inputCls} min-w-0`}
+                    type="tel"
+                    value={d.phone}
+                    onChange={(e) => {
+                      // An autofilled or pasted "+52 …" / "+1 …" picks the country and keeps only the local number.
+                      const v = e.target.value;
+                      const m = /^\s*\+\s*(52|1)\b[\s-]*(.*)$/.exec(v);
+                      if (m && d.phoneCountry !== "OTHER") {
+                        const code = m[1] === "52" ? "MX" : d.phoneCountry === "CA" ? "CA" : "US";
+                        setShowMissing(false);
+                        setD((p) => ({ ...p, phoneCountry: code, phone: m[2] }));
+                      } else {
+                        set("phone", v);
+                      }
+                    }}
+                    placeholder={countryOf(d).placeholder}
+                    autoComplete="tel"
+                    inputMode="tel"
+                  />
+                </div>
               </div>
               <div>
                 <label htmlFor="cw-email" className={labelCls}>
-                  Email <span className={optionalCls}>(optional)</span>
+                  Email *
                 </label>
                 <input
                   id="cw-email"
@@ -950,7 +1050,7 @@ export default function ContactWizard() {
               Got it, {d.name.split(" ")[0]}. We will call you.
             </h2>
             <p className={subCls}>
-              Your request is in. We will reach you at <strong className="text-brand-gray">{d.phone}</strong>.
+              Your request is in. We will reach you at <strong className="text-brand-gray">{fullPhone(d)}</strong>.
             </p>
             <div className="mb-2 rounded-xl border border-brand-border bg-brand-bg p-5 text-left">
               <p className="text-sm font-semibold text-brand-primary">Want a more accurate quote on that first call?</p>
